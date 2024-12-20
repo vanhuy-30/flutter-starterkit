@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter_kit/core/routes/router.dart';
+// import 'package:flutter_starter_kit/core/routes/routes.dart';
+// import 'package:flutter_starter_kit/core/services/navigation_service.dart';
 import 'package:flutter_starter_kit/core/theme/app_theme.dart';
-import 'package:flutter_starter_kit/presentation/pages/home_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 Future<void> main() async {
@@ -23,12 +25,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'app_name'.tr(),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.light,
-      home: MyHomePage(title: 'app_name'.tr()),
+      routerConfig: router(),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

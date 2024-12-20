@@ -7,7 +7,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.1
+  sdk: ^3.4.1
 
 dependencies:
   flutter:
@@ -27,6 +27,12 @@ dependencies:
   # image:
   cached_network_image: ^3.4.1
   flutter_svg: ^2.0.16
+
+  # navigation:
+  go_router: ^14.6.0
+
+  # animations:
+  lottie: ^3.2.0
 
   cupertino_icons: ^1.0.8
 
@@ -55,6 +61,7 @@ flutter:
 
   assets:
     - assets/translations/
+    - assets/animations/
   generate: true
 
   # To add custom fonts to your application, add a fonts section here,

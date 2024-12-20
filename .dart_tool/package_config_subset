@@ -1,3 +1,7 @@
+archive
+3.0
+file:///Users/vanhuy/.pub-cache/hosted/pub.dev/archive-3.6.1/
+file:///Users/vanhuy/.pub-cache/hosted/pub.dev/archive-3.6.1/lib/
 args
 3.3
 file:///Users/vanhuy/.pub-cache/hosted/pub.dev/args-2.6.0/
@@ -78,6 +82,10 @@ flutter_svg
 3.4
 file:///Users/vanhuy/.pub-cache/hosted/pub.dev/flutter_svg-2.0.16/
 file:///Users/vanhuy/.pub-cache/hosted/pub.dev/flutter_svg-2.0.16/lib/
+go_router
+3.3
+file:///Users/vanhuy/.pub-cache/hosted/pub.dev/go_router-14.6.2/
+file:///Users/vanhuy/.pub-cache/hosted/pub.dev/go_router-14.6.2/lib/
 google_fonts
 2.14
 file:///Users/vanhuy/.pub-cache/hosted/pub.dev/google_fonts-6.2.1/
@@ -110,6 +118,14 @@ lints
 3.1
 file:///Users/vanhuy/.pub-cache/hosted/pub.dev/lints-4.0.0/
 file:///Users/vanhuy/.pub-cache/hosted/pub.dev/lints-4.0.0/lib/
+logging
+3.4
+file:///Users/vanhuy/.pub-cache/hosted/pub.dev/logging-1.3.0/
+file:///Users/vanhuy/.pub-cache/hosted/pub.dev/logging-1.3.0/lib/
+lottie
+3.2
+file:///Users/vanhuy/.pub-cache/hosted/pub.dev/lottie-3.2.0/
+file:///Users/vanhuy/.pub-cache/hosted/pub.dev/lottie-3.2.0/lib/
 matcher
 3.0
 file:///Users/vanhuy/.pub-cache/hosted/pub.dev/matcher-0.12.16+1/
@@ -319,7 +335,7 @@ flutter_web_plugins
 file:///Users/vanhuy/Develops/flutter/packages/flutter_web_plugins/
 file:///Users/vanhuy/Develops/flutter/packages/flutter_web_plugins/lib/
 flutter_starter_kit
-3.5
+3.4
 file:///Users/vanhuy/Develops/personal%20project/flutter-starterkit/
 file:///Users/vanhuy/Develops/personal%20project/flutter-starterkit/lib/
 2
