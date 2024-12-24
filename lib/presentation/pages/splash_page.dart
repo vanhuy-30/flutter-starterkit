@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
     final bool isLoggedIn = true;
     if (mounted) {
       if (isLoggedIn) {
-        context.nav.toForgotPassword(context);
+        context.nav.toHome(context);
       } else {
         context.nav.toLogin(context);
       }

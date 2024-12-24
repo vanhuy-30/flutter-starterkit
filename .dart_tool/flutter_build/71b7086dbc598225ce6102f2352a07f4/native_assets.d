@@ -1,1 +1,0 @@
- /Users/vanhuy/Develops/personal\ project/flutter-starterkit/.dart_tool/flutter_build/71b7086dbc598225ce6102f2352a07f4/native_assets.yaml: 
