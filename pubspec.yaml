@@ -39,6 +39,9 @@ dependencies:
   hive_flutter: ^1.1.0
   shared_preferences: ^2.3.4
 
+  # state management:
+  provider: ^6.1.2
+
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
@@ -69,6 +72,8 @@ flutter:
   assets:
     - assets/translations/
     - assets/animations/
+    - assets/icons/
+    - assets/images/
   generate: true
 
   # To add custom fonts to your application, add a fonts section here,

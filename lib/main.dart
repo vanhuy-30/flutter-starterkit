@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/core/routes/router.dart';
+import 'package:flutter_starter_kit/core/services/locale_service.dart';
 import 'package:flutter_starter_kit/core/services/preferences_service.dart';
 import 'package:flutter_starter_kit/core/theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_starter_kit/data/models/product/product.dart';
 import 'package:flutter_starter_kit/data/models/user/user.dart';
+import 'package:flutter_starter_kit/presentation/view_model/language_view_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await Hive.initFlutter();
 
+  await Hive.initFlutter();
   Hive.registerAdapter(UserAdapter());
   Hive.registerAdapter(ProductAdapter());
   await Hive.openBox<User>('users');
@@ -19,14 +24,32 @@ Future<void> main() async {
 
   PreferencesService preferencesService = PreferencesService();
   await preferencesService.init();
+  final localeService = LocaleService();
+
+  const supportedLocales = [
+    Locale('en'),
+    Locale('vi'),
+  ];
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('vi')],
+      supportedLocales: supportedLocales,
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
       useOnlyLangCode: true,
-      child: const MyApp(),
+      useFallbackTranslations: true,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => LanguageViewModel(
+              preferencesService: preferencesService,
+              localeService: localeService,
+              supportedLocales: supportedLocales,
+            ),
+          ),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }

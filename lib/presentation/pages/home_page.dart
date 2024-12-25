@@ -1,7 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_starter_kit/core/theme/colors.dart';
+import 'package:flutter_starter_kit/data/models/locale_model.dart';
+import 'package:flutter_starter_kit/presentation/components/atoms/app_drop_down_field.dart';
 import 'package:flutter_starter_kit/presentation/components/mocules/navigation/appbar.dart';
-import 'package:flutter_starter_kit/presentation/components/mocules/navigation/bottom_navigation_bar.dart';
-import 'package:flutter_starter_kit/presentation/components/mocules/navigation/tabbar.dart';
+import 'package:flutter_starter_kit/presentation/view_model/language_view_model.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -12,58 +16,65 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   TextEditingController controller = TextEditingController();
-
-  late TabController _tabController;
-
-  final List<Tab> tabs = const [
-    Tab(icon: Icon(Icons.home), text: 'Home'),
-    Tab(icon: Icon(Icons.search), text: 'Search'),
-    Tab(icon: Icon(Icons.settings), text: 'Settings'),
-  ];
-
-  final List<BottomNavigationBarItem> items = const [
-    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-    BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-    BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-  ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: tabs.length, vsync: this);
-  }
-
-  void onBottomNavTap(int index) {
-    setState(() {
-      _tabController.index = index;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: widget.title),
-      body: Center(
+      appBar: CustomAppBar(
+        title: widget.title,
+        actions: [
+          Consumer<LanguageViewModel>(
+              builder: (context, languageViewModel, child) {
+            return AppDropdownField(
+              width: 120,
+              items: languageViewModel.availableLanguages,
+              value: languageViewModel.getCurrentLanguage(),
+              isExpanded: false,
+              onChanged: (LocaleModel? selectedLocale) {
+                if (selectedLocale != null) {
+                  context.setLocale(selectedLocale.locale);
+                  languageViewModel.changeLanguage(selectedLocale.locale);
+                }
+              },
+              itemBuilder: (LocaleModel localeModel) {
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      localeModel.flagPath,
+                      width: 24,
+                      height: 24,
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(localeModel.locale.languageCode.toUpperCase()),
+                  ],
+                );
+              },
+              dropdownColor: AppColors.whiteColor,
+              dropdownIcon: const Icon(Icons.arrow_drop_down,
+                  color: AppColors.primaryColor),
+              iconEnabledColor: AppColors.primaryColor,
+              isCompactMode: true,
+              readOnly: false,
+            );
+          }),
+        ],
+      ),
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomTabbar(tabs: tabs, tabController: _tabController),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                Center(child: Text('Home Page')),
-                Center(child: Text('Search Page')),
-                Center(child: Text('Settings Page')),
-              ],
-            ),
-          ),
-          ],
+          children: [],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(currentIndex: _tabController.index, onTap: onBottomNavTap, items: items),
     );
   }
 }
