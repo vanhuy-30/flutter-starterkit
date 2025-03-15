@@ -1,22 +1,16 @@
-import 'package:flutter_starter_kit/core/services/hive_service.dart';
+import 'package:flutter_starter_kit/core/network/api_client.dart';
 import 'package:flutter_starter_kit/data/models/user/user.dart';
 
 class UserRepository {
-  final HiveService _hiveService = HiveService();
+  final ApiClient apiClient;
 
-  Future<void> addUser(User user) {
-    return _hiveService.addUser(user);
+  UserRepository(this.apiClient);
+
+  Future<List<User>> getUsers() async {
+    return await apiClient.getUsers();
   }
 
-  Future<void> deleteUser(String id) {
-    return _hiveService.deleteUser(id);
-  }
-
-  Future<void> updateUser(User user) {
-    return _hiveService.updateUser(user);
-  }
-
-  List<User> getAllUsers() {
-    return _hiveService.getAllUsers();
+  Future<User> getUserById(int id) async {
+    return await apiClient.getUserById(id);
   }
 }

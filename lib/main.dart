@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/core/routes/router.dart';
+import 'package:flutter_starter_kit/core/services/hive_service.dart';
 import 'package:flutter_starter_kit/core/services/locale_service.dart';
 import 'package:flutter_starter_kit/core/services/preferences_service.dart';
 import 'package:flutter_starter_kit/core/theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_starter_kit/data/models/product/product.dart';
-import 'package:flutter_starter_kit/data/models/user/user.dart';
 import 'package:flutter_starter_kit/presentation/view_model/language_view_model.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -16,11 +14,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
-  await Hive.initFlutter();
-  Hive.registerAdapter(UserAdapter());
-  Hive.registerAdapter(ProductAdapter());
-  await Hive.openBox<User>('users');
-  await Hive.openBox<Product>('products');
+  final hiveService = HiveService();
+  await hiveService.init();
 
   PreferencesService preferencesService = PreferencesService();
   await preferencesService.init();
@@ -40,6 +35,7 @@ Future<void> main() async {
       useFallbackTranslations: true,
       child: MultiProvider(
         providers: [
+          Provider.value(value: hiveService),
           ChangeNotifierProvider(
             create: (_) => LanguageViewModel(
               preferencesService: preferencesService,

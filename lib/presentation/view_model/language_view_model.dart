@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/core/images_assets.dart';
 import 'package:flutter_starter_kit/core/services/locale_service.dart';

@@ -8,13 +8,13 @@ class ProductRepository {
     return _hiveService.addProduct(product);
   }
 
-  Future<void> deleteProduct(String id) {
+  Future<void> deleteProduct(int id) {
     return _hiveService.deleteProduct(id);
   }
 
-  Future<void> updateProduct(Product product) {
-    return _hiveService.updateProduct(product);
-  }
+  // Future<void> updateProduct(Product product) {
+  //   return _hiveService.updateProduct(product);
+  // }
 
   List<Product> getAllProducts() {
     return _hiveService.getAllProducts();
