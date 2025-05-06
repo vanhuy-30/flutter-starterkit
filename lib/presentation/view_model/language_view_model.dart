@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/core/images_assets.dart';
+import 'package:flutter_starter_kit/core/assests/assests.dart';
 import 'package:flutter_starter_kit/core/services/locale_service.dart';
 import 'package:flutter_starter_kit/core/services/preferences_service.dart';
 import 'package:flutter_starter_kit/data/models/locale_model.dart';

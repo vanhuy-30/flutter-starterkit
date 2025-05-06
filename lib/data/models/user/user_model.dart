@@ -1,10 +1,10 @@
 import 'package:flutter_starter_kit/data/models/type_ids.dart';
 import 'package:hive/hive.dart';
 
-part 'user.g.dart';
+part 'user_model.g.dart';
 
 @HiveType(typeId: userTypeId)
-class User extends HiveObject {
+class UserModel extends HiveObject {
   @HiveField(0)
   late String id;
 
@@ -17,25 +17,20 @@ class User extends HiveObject {
   @HiveField(3)
   final String avatarUrl;
 
-  @HiveField(4)
-  final bool isPremium;
-
-  User({
+  UserModel({
     required this.id,
     required this.name,
     required this.email,
     required this.avatarUrl,
-    this.isPremium = false,
   });
 
   // Convert from Map (used when get data from API)
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
       id: json['id'],
       name: json['name'],
       email: json['email'],
       avatarUrl: json['avatar_url'],
-      isPremium: json['is_premium'] ?? false,
     );
   }
 
@@ -46,7 +41,6 @@ class User extends HiveObject {
       'name': name,
       'email': email,
       'avatar_url': avatarUrl,
-      'is_premium': isPremium,
     };
   }
 }

@@ -4,7 +4,7 @@ import 'package:shimmer/shimmer.dart';
 class SkeletonLoader extends StatelessWidget {
   final double? width;
   final double? height;
-  final double borderRadius;
+  final BorderRadius? borderRadius;
   final Color? color;
   final Color? baseColor;
   final Color? highlightColor;
@@ -14,7 +14,7 @@ class SkeletonLoader extends StatelessWidget {
     super.key,
     this.width,
     this.height,
-    this.borderRadius = 8.0,
+    this.borderRadius,
     this.color,
     this.baseColor,
     this.highlightColor,
@@ -32,7 +32,7 @@ class SkeletonLoader extends StatelessWidget {
         margin: margin,
         decoration: BoxDecoration(
           color: color ?? Colors.grey.shade300,
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: borderRadius ?? BorderRadius.circular(8),
         ),
       ),
     );

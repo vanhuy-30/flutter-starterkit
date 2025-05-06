@@ -1,8 +1,7 @@
 name: flutter_starter_kit
 description: "A starter kit Flutter project."
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -34,22 +33,50 @@ dependencies:
   # animations:
   lottie: ^3.2.0
 
+  # automatic text resizing
+  auto_size_text: ^3.0.0
+
+  # date time picker
+  calendar_date_picker2: ^2.0.0
+  # refer: flutter_datetime_picker_plus, syncfusion_flutter_datepicker
+
+  # splash:
+  flutter_native_splash: ^2.4.2
+
+  # env
+  flutter_dotenv: ^5.2.0
+
+  # otp
+  pinput: ^5.0.1
+
   # local storage:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   shared_preferences: ^2.3.4
+  path_provider: ^2.1.5
 
   # state management:
   provider: ^6.1.2
+  flutter_riverpod: ^2.6.1
 
   # networking
   dio: ^5.5.0
   retrofit: ^4.4.0
+  connectivity_plus: ^6.1.3
+  json_annotation: ^4.9.0
 
   # dependency injection
   get_it: ^8.0.3
 
-  # Logging & Crash Reporting
+  # firebase services
+  firebase_core: ^3.11.0
+  firebase_remote_config: ^5.4.0
+  firebase_messaging: ^15.2.0
+
+  # local notification
+  flutter_local_notifications: ^18.0.0
+
+  # logging & crash reporting
   logger: ^2.0.2
   sentry_flutter: ^7.13.0
 
@@ -63,6 +90,7 @@ dev_dependencies:
   hive_generator: ^2.0.0
   build_runner: ^2.3.3
   retrofit_generator: ^8.0.0
+  json_serializable: ^6.9.0
 
 flutter:
   uses-material-design: true

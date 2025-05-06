@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/utils/badge_utils.dart';
+import 'package:flutter_starter_kit/core/utils/badge_utils.dart';
 
 class CounterBadge extends StatelessWidget {
   final int value;
