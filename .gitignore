@@ -2,3 +2,6 @@
 build/
 .flutter-plugins-dependencies
 ios/Flutter/Flutter.framework
+
+# FVM Version Cache
+.fvm/

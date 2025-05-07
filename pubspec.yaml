@@ -78,7 +78,7 @@ dependencies:
 
   # logging & crash reporting
   logger: ^2.0.2
-  sentry_flutter: ^7.13.0
+  # sentry_flutter: ^8.14.2
 
   cupertino_icons: ^1.0.8
 
