@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/core/routes/routes.dart';
 import 'package:flutter_starter_kit/presentation/pages/home_page.dart';
-import 'package:flutter_starter_kit/presentation/pages/login_page.dart';
+import 'package:flutter_starter_kit/presentation/pages/login/login_page.dart';
 import 'package:flutter_starter_kit/presentation/pages/not_found_page.dart';
 import 'package:flutter_starter_kit/presentation/pages/splash_page.dart';
 import 'package:go_router/go_router.dart';
