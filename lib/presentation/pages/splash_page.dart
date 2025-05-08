@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter_kit/core/assests/assests.dart';
 import 'package:flutter_starter_kit/core/services/navigation_service.dart';
+import 'package:flutter_starter_kit/core/theme/colors.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -17,9 +19,9 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> _checkAuth() async {
     await Future.delayed(const Duration(seconds: 2));
-    // fake check auth
+    // mock check auth
     // TODO: replace this with real auth check
-    final bool isLoggedIn = true;
+    final bool isLoggedIn = false;
     if (mounted) {
       if (isLoggedIn) {
         context.nav.toHome(context);
@@ -31,9 +33,10 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: AppColors.whiteColor,
       body: Center(
-        child: CircularProgressIndicator(),
+        child: Image.asset(splashLogo, width: 100, height: 100),
       ),
     );
   }

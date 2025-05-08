@@ -101,3 +101,15 @@ flutter:
     - assets/icons/
     - assets/images/
   generate: true
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/splash_logo.png
+  branding: assets/images/branding.png
+  branding_mode: bottom
+  android: true
+  ios: true
+  web: false
+  android_gravity: center
+  ios_content_mode: center
+  fullscreen: true
