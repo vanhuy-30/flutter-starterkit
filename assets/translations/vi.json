@@ -1,4 +1,5 @@
 {
     "app_name": "Dự án Flutter starter kit",
-    "search_hint": "Nhập để tìm kiếm..."
+    "search_hint": "Nhập để tìm kiếm...",
+    "wellcome_message": "Chào mừng đến với Flutter Starter Kit"
 }

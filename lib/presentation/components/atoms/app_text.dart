@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 ///
 /// Automatically adjusts the font size based on available space.
 /// Provides convenient parameters for common text customization.
-class AppAutoText extends StatelessWidget {
+class AppText extends StatelessWidget {
   final String text;
   final TextStyle? style;
   final TextAlign? textAlign;
@@ -18,7 +18,7 @@ class AppAutoText extends StatelessWidget {
   final double? letterSpacing;
   final TextDecoration? decoration;
 
-  const AppAutoText(
+  const AppText(
     this.text, {
     super.key,
     this.style,
