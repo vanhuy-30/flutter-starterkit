@@ -20,11 +20,13 @@ This project follows a **Clean Architecture** approach, clearly separating conce
 ```bash
 lib/
 ├── core/                   # Configuration, theme, routes, DI, utils
+│   ├── assests/            # Define assests
 │   ├── config/             # Theme, router, environment
 │   ├── di/                 # Service Locator (GetIt)
-│   ├── localization/       # Multi-language support
 │   ├── network/            # Dio setup
-│   ├── services/           # Firebase, Notifications, etc.
+│   ├── routes/             # Route setup
+│   ├── services/           # Firebase, Notifications, Locale, etc.
+│   ├── theme/              # Theme app
 │   └── utils/              # UI helpers, formatters
 │
 ├── data/                   # Models, repositories, data sources
