@@ -1,4 +1,5 @@
 {
     "app_name": "Flutter starter kit project",
-    "search_hint": "Type to search..."
+    "search_hint": "Type to search...",
+    "wellcome_message": "Wellcome to Flutter Starter Kit"
 }
