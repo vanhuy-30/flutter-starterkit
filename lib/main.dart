@@ -9,6 +9,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_starter_kit/presentation/view_model/language_view_model.dart';
 import 'package:provider/provider.dart';
 
+import 'data/repositories/auth_repository_impl.dart';
+import 'domain/usecases/login_usecase.dart';
+import 'presentation/viewmodels/login_viewmodel.dart';
+
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
@@ -30,6 +34,12 @@ Future<void> main() async {
     Locale('vi'),
   ];
 
+  // Initialize repositories
+  final authRepository = AuthRepositoryImpl();
+
+  // Initialize use cases
+  final loginUseCase = LoginUseCase(authRepository);
+
   runApp(
     EasyLocalization(
       supportedLocales: supportedLocales,
@@ -40,12 +50,18 @@ Future<void> main() async {
       child: MultiProvider(
         providers: [
           Provider.value(value: hiveService),
+          Provider<LoginUseCase>.value(value: loginUseCase),
           ChangeNotifierProvider(
             create: (_) => LanguageViewModel(
               preferencesService: preferencesService,
               localeService: localeService,
               supportedLocales: supportedLocales,
             ),
+          ),
+          ChangeNotifierProxyProvider<LoginUseCase, LoginViewModel>(
+            create: (context) => LoginViewModel(context.read<LoginUseCase>()),
+            update: (context, loginUseCase, previous) => 
+              previous ?? LoginViewModel(loginUseCase),
           ),
         ],
         child: const MyApp(),
