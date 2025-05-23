@@ -4,7 +4,7 @@ import 'package:flutter_starter_kit/presentation/components/atoms/text_fields/ap
 class PasswordTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
-  final String? lableText;
+  final String? labelText;
   final bool obscureText;
   final Color? cursorColor;
   final double? width;
@@ -21,7 +21,7 @@ class PasswordTextField extends StatefulWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    this.lableText,
+    this.labelText,
     this.obscureText = true,
     this.cursorColor,
     this.width,
@@ -62,7 +62,7 @@ class PasswordTextFieldState extends State<PasswordTextField> {
               ? const Icon(Icons.visibility_off)
               : const Icon(Icons.visibility)),
       hintText: widget.hintText,
-      lableText: widget.lableText,
+      labelText: widget.labelText,
       onSuffixIconTap: widget.onHideShowPasswordTap ??
           () => setState(() => _isObscured = !_isObscured),
       validator: widget.validator,

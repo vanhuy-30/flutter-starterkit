@@ -4,7 +4,7 @@ import 'package:flutter_starter_kit/core/theme/sizes.dart';
 
 class AppTextField extends StatelessWidget {
   final String hintText;
-  final String? lableText;
+  final String? labelText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextEditingController controller;
@@ -29,7 +29,7 @@ class AppTextField extends StatelessWidget {
   const AppTextField({
     super.key,
     required this.hintText,
-    this.lableText,
+    this.labelText,
     this.prefixIcon,
     this.suffixIcon,
     required this.controller,
@@ -72,7 +72,7 @@ class AppTextField extends StatelessWidget {
         cursorColor: cursorColor ?? AppColors.primaryColor,
         decoration: decoration ?? InputDecoration(
           hintText: hintText,
-          labelText: lableText,
+          labelText: labelText,
           errorText: errorText,
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
