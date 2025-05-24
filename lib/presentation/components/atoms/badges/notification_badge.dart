@@ -29,11 +29,12 @@ class NotificationBadge extends StatelessWidget {
       ),
       child: Text(
         displayCount,
-        style: textStyle ?? const TextStyle(
-          color: Colors.white,
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
-        ),
+        style: textStyle ??
+            const TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+            ),
       ),
     );
   }

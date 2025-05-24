@@ -70,34 +70,35 @@ class AppTextField extends StatelessWidget {
         onEditingComplete: onEditingComplete,
         onFieldSubmitted: onFieldSubmitted,
         cursorColor: cursorColor ?? AppColors.primaryColor,
-        decoration: decoration ?? InputDecoration(
-          hintText: hintText,
-          labelText: labelText,
-          errorText: errorText,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          filled: true,
-          fillColor: fillColor ?? AppColors.backgroundColor,
-          border: const OutlineInputBorder(
-            borderRadius: AppSizes.borderRadiusMedium,
-            borderSide: BorderSide(color: AppColors.greyColor),
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderRadius: AppSizes.borderRadiusMedium,
-            borderSide: BorderSide(
-              color: AppColors.greyColor,
+        decoration: decoration ??
+            InputDecoration(
+              hintText: hintText,
+              labelText: labelText,
+              errorText: errorText,
+              prefixIcon: prefixIcon,
+              suffixIcon: suffixIcon,
+              filled: true,
+              fillColor: fillColor ?? AppColors.backgroundColor,
+              border: const OutlineInputBorder(
+                borderRadius: AppSizes.borderRadiusMedium,
+                borderSide: BorderSide(color: AppColors.greyColor),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderRadius: AppSizes.borderRadiusMedium,
+                borderSide: BorderSide(
+                  color: AppColors.greyColor,
+                ),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderRadius: AppSizes.borderRadiusMedium,
+                borderSide: BorderSide(
+                  color: AppColors.primaryColor,
+                  width: 2.0,
+                ),
+              ),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: AppSizes.borderRadiusMedium,
-            borderSide: BorderSide(
-              color: AppColors.primaryColor,
-              width: 2.0,
-            ),
-          ),
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        ),
       ),
     );
   }

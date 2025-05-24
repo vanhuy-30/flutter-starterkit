@@ -6,4 +6,4 @@ abstract class AuthRepository {
   Future<void> loginWithFacebook();
   Future<void> loginWithApple();
   Future<void> loginWithPhone();
-} 
+}

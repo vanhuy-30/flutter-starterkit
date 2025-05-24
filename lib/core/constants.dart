@@ -1,6 +1,6 @@
 class AppConstants {
   AppConstants._();
-  
+
   // App-specific constants
   static const String appName = "Flutter Starter Kit";
   static const String appVersion = "1.0.0";

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/presentation/components/atoms/app_loader/skeleton/skeleton_avatar.dart';
 import 'package:flutter_starter_kit/presentation/components/atoms/app_loader/skeleton/skeleton_loader.dart';
 
-
 class SkeletonListItem extends StatelessWidget {
   const SkeletonListItem({super.key});
 

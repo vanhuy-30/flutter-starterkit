@@ -15,12 +15,13 @@ class LocaleService {
   }
 
   bool isLanguageSupported(String languageCode, List<Locale> supportedLocales) {
-    return supportedLocales.any((locale) => locale.languageCode == languageCode);
+    return supportedLocales
+        .any((locale) => locale.languageCode == languageCode);
   }
 
   Locale getDefaultLocale(List<Locale> supportedLocales) {
     final deviceLocale = getDeviceLocale();
-    if (deviceLocale != null && 
+    if (deviceLocale != null &&
         isLanguageSupported(deviceLocale.languageCode, supportedLocales)) {
       return deviceLocale;
     }

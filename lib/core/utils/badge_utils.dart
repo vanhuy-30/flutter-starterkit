@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Enum for badge variants
-enum BadgeVariant {
-  primary,
-  secondary,
-  success,
-  warning,
-  error,
-  info
-}
+enum BadgeVariant { primary, secondary, success, warning, error, info }
 
 /// Utility for badge color and icon management
 class BadgeUtils {

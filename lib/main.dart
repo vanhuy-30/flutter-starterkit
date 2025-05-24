@@ -60,8 +60,8 @@ Future<void> main() async {
           ),
           ChangeNotifierProxyProvider<LoginUseCase, LoginViewModel>(
             create: (context) => LoginViewModel(context.read<LoginUseCase>()),
-            update: (context, loginUseCase, previous) => 
-              previous ?? LoginViewModel(loginUseCase),
+            update: (context, loginUseCase, previous) =>
+                previous ?? LoginViewModel(loginUseCase),
           ),
         ],
         child: const MyApp(),

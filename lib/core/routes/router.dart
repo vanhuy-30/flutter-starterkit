@@ -14,13 +14,13 @@ GoRouter router() {
     navigatorKey: navigatorKey,
     initialLocation: Routes.splash,
     // redirect: (context, state) {
-      // final isLoggedIn = false;
-      // final isLoggingIn = state.location == '/login';
+    // final isLoggedIn = false;
+    // final isLoggingIn = state.location == '/login';
 
-      // if (!isLoggedIn && !isLoggingIn) {
-      //   return '/login';
-      // }
-      // return null;
+    // if (!isLoggedIn && !isLoggingIn) {
+    //   return '/login';
+    // }
+    // return null;
     // },
     routes: [
       GoRoute(

@@ -29,4 +29,4 @@ class SocialLoginButton extends StatelessWidget {
       onPressed: onPressed,
     );
   }
-} 
+}
