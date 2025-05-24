@@ -31,13 +31,14 @@ class NavigationService {
   void toSplash(BuildContext context) => go(context, Routes.splash);
   void toLogin(BuildContext context) => go(context, Routes.login);
   void toRegister(BuildContext context) => go(context, Routes.register);
-  void toForgotPassword(BuildContext context) => push(context, Routes.forgotPassword);
+  void toForgotPassword(BuildContext context) =>
+      push(context, Routes.forgotPassword);
   void toHome(BuildContext context) => go(context, Routes.home);
 
   // Navigation with parameters
   void pushWithParams(
-    BuildContext context, 
-    String route, 
+    BuildContext context,
+    String route,
     Map<String, String> params, {
     Object? extra,
   }) {
@@ -49,8 +50,8 @@ class NavigationService {
   }
 
   void pushWithQuery(
-    BuildContext context, 
-    String route, 
+    BuildContext context,
+    String route,
     Map<String, String> queryParams, {
     Object? extra,
   }) {
@@ -63,8 +64,7 @@ class NavigationService {
 
   // Stack manipulation
   void popUntil(BuildContext context, String route) {
-    while (context.canPop() && 
-           GoRouterState.of(context).uri.path != route) {
+    while (context.canPop() && GoRouterState.of(context).uri.path != route) {
       context.pop();
     }
   }

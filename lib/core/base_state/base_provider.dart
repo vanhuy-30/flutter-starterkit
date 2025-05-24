@@ -96,4 +96,4 @@ abstract class BaseChangeNotifier extends ChangeNotifier {
   Future<dynamic> getData() async {
     throw UnimplementedError('getData() must be implemented');
   }
-} 
+}

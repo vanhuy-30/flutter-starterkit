@@ -63,7 +63,8 @@ class OTPInputWidget extends StatelessWidget {
       defaultPinTheme: defaultPinTheme,
       focusedPinTheme: defaultPinTheme.copyWith(
         decoration: defaultPinTheme.decoration!.copyWith(
-          border: Border.all(color: focusedBorderColor ?? Theme.of(context).primaryColor),
+          border: Border.all(
+              color: focusedBorderColor ?? Theme.of(context).primaryColor),
         ),
       ),
       errorPinTheme: defaultPinTheme.copyWith(

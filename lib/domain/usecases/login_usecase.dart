@@ -25,4 +25,4 @@ class LoginUseCase {
   Future<void> loginWithPhone() async {
     await _authRepository.loginWithPhone();
   }
-} 
+}

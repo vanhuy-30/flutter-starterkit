@@ -25,7 +25,8 @@ abstract class BaseState {
   }
 
   @override
-  int get hashCode => isLoading.hashCode ^ error.hashCode ^ isInitialized.hashCode;
+  int get hashCode =>
+      isLoading.hashCode ^ error.hashCode ^ isInitialized.hashCode;
 }
 
 class InitialState extends BaseState {
@@ -94,4 +95,4 @@ class SuccessState<T> extends BaseState {
 
   @override
   int get hashCode => super.hashCode ^ data.hashCode;
-} 
+}

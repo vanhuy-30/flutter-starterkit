@@ -70,38 +70,40 @@ class AppDropdownField<T> extends StatelessWidget {
         items: items.map((item) {
           return DropdownMenuItem<T>(
             value: item,
-            child: itemBuilder != null 
-              ? itemBuilder!(item) 
-              : Text(
-                  _defaultItemToString(item),
-                  overflow: TextOverflow.ellipsis,
-                ),
+            child: itemBuilder != null
+                ? itemBuilder!(item)
+                : Text(
+                    _defaultItemToString(item),
+                    overflow: TextOverflow.ellipsis,
+                  ),
           );
         }).toList(),
         onChanged: readOnly ? null : onChanged,
         validator: validator ?? _defaultValidator,
-        decoration: decoration ?? InputDecoration(
-          hintText: hintText,
-          labelText: labelText,
-          border: const OutlineInputBorder(
-            borderRadius: AppSizes.borderRadiusMedium,
-            borderSide: BorderSide(color: AppColors.greyColor),
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderRadius: AppSizes.borderRadiusMedium,
-            borderSide: BorderSide(
-              color: AppColors.greyColor,
+        decoration: decoration ??
+            InputDecoration(
+              hintText: hintText,
+              labelText: labelText,
+              border: const OutlineInputBorder(
+                borderRadius: AppSizes.borderRadiusMedium,
+                borderSide: BorderSide(color: AppColors.greyColor),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderRadius: AppSizes.borderRadiusMedium,
+                borderSide: BorderSide(
+                  color: AppColors.greyColor,
+                ),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderRadius: AppSizes.borderRadiusMedium,
+                borderSide: BorderSide(
+                  color: AppColors.primaryColor,
+                  width: 2.0,
+                ),
+              ),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: AppSizes.borderRadiusMedium,
-            borderSide: BorderSide(
-              color: AppColors.primaryColor,
-              width: 2.0,
-            ),
-          ),
-          contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        ),
         dropdownColor: dropdownColor,
         icon: dropdownIcon,
         iconEnabledColor: iconEnabledColor ?? AppColors.primaryColor,

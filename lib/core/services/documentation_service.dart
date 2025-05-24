@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 class DocumentationService {
-  static final DocumentationService _instance = DocumentationService._internal();
+  static final DocumentationService _instance =
+      DocumentationService._internal();
   factory DocumentationService() => _instance;
   DocumentationService._internal();
 
@@ -183,4 +184,4 @@ class DocumentationService {
     }
     return stats;
   }
-} 
+}

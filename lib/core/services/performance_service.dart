@@ -51,7 +51,7 @@ class PerformanceService {
     try {
       final deviceInfo = await _deviceInfo.deviceInfo;
       final packageInfo = await PackageInfo.fromPlatform();
-      
+
       return {
         'device_info': deviceInfo.data,
         'app_version': packageInfo.version,
@@ -159,4 +159,4 @@ class PerformanceService {
       rethrow;
     }
   }
-} 
+}

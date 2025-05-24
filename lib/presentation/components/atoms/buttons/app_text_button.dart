@@ -31,7 +31,8 @@ class AppTextButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         label,
-        style: AppTextStyles.headlineStyle(color: textColor ?? AppColors.primaryColor),
+        style: AppTextStyles.headlineStyle(
+            color: textColor ?? AppColors.primaryColor),
       ),
     );
   }

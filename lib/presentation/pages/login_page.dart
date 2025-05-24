@@ -123,16 +123,20 @@ class _LoginView extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).primaryColor,
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      textStyle: const TextStyle(fontSize: 18.0, color: Colors.white),
+                      textStyle:
+                          const TextStyle(fontSize: 18.0, color: Colors.white),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       elevation: 5,
                     ),
-                    onPressed: viewModel.isLoading ? null : _wrapCallback(viewModel.login),
+                    onPressed: viewModel.isLoading
+                        ? null
+                        : _wrapCallback(viewModel.login),
                     child: viewModel.isLoading
                         ? const CircularProgressIndicator(color: Colors.white)
-                        : const Text('Đăng Nhập', style: TextStyle(color: Colors.white)),
+                        : const Text('Đăng Nhập',
+                            style: TextStyle(color: Colors.white)),
                   ),
                   const SizedBox(height: 24.0),
                   Row(
@@ -155,13 +159,17 @@ class _LoginView extends StatelessWidget {
                       SocialLoginButton(
                         icon: Icons.phone_android,
                         label: 'Điện thoại',
-                        onPressed: viewModel.isLoading ? () {} : _wrapCallback(viewModel.loginWithPhone),
+                        onPressed: viewModel.isLoading
+                            ? () {}
+                            : _wrapCallback(viewModel.loginWithPhone),
                         color: Colors.green,
                       ),
                       SocialLoginButton(
                         icon: Icons.mail_outline,
                         label: 'Gmail',
-                        onPressed: viewModel.isLoading ? () {} : _wrapCallback(viewModel.loginWithGoogle),
+                        onPressed: viewModel.isLoading
+                            ? () {}
+                            : _wrapCallback(viewModel.loginWithGoogle),
                         color: Colors.red,
                       ),
                     ],
@@ -173,13 +181,17 @@ class _LoginView extends StatelessWidget {
                       SocialLoginButton(
                         icon: Icons.facebook,
                         label: 'Facebook',
-                        onPressed: viewModel.isLoading ? () {} : _wrapCallback(viewModel.loginWithFacebook),
+                        onPressed: viewModel.isLoading
+                            ? () {}
+                            : _wrapCallback(viewModel.loginWithFacebook),
                         color: Colors.blue.shade800,
                       ),
                       SocialLoginButton(
                         icon: Icons.apple,
                         label: 'Apple',
-                        onPressed: viewModel.isLoading ? () {} : _wrapCallback(viewModel.loginWithApple),
+                        onPressed: viewModel.isLoading
+                            ? () {}
+                            : _wrapCallback(viewModel.loginWithApple),
                         color: Colors.black,
                       ),
                     ],
@@ -193,7 +205,8 @@ class _LoginView extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const RegisterPage()),
+                            MaterialPageRoute(
+                                builder: (context) => const RegisterPage()),
                           );
                         },
                         child: const Text(

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 /// Displays a SnackBar with a custom message and optional styling.
 void showAppSnackBar(BuildContext context, String message,
-    {Color backgroundColor = Colors.black, Duration duration = const Duration(seconds: 2)}) {
+    {Color backgroundColor = Colors.black,
+    Duration duration = const Duration(seconds: 2)}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(message),

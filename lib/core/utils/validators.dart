@@ -3,7 +3,8 @@ class Validators {
     if (value == null || value.isEmpty) {
       return "Email không được để trống";
     }
-    if (!RegExp(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$").hasMatch(value)) {
+    if (!RegExp(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+        .hasMatch(value)) {
       return "Email không hợp lệ";
     }
     return null;

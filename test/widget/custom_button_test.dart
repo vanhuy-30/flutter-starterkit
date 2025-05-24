@@ -3,7 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_starter_kit/presentation/shared/widgets/custom_button.dart';
 
 void main() {
-  testWidgets('CustomButton displays text correctly', (WidgetTester tester) async {
+  testWidgets('CustomButton displays text correctly',
+      (WidgetTester tester) async {
     // Arrange
     const buttonText = 'Test Button';
     var onPressedCalled = false;
@@ -62,4 +63,4 @@ void main() {
     await tester.pump();
     expect(onPressedCalled, false);
   });
-} 
+}

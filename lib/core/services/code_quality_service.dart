@@ -3,7 +3,6 @@ import 'package:logger/logger.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
-
 class CodeQualityService {
   static final CodeQualityService _instance = CodeQualityService._internal();
   factory CodeQualityService() => _instance;
@@ -11,13 +10,12 @@ class CodeQualityService {
 
   final Logger _logger = Logger(
     printer: PrettyPrinter(
-      methodCount: 2,
-      errorMethodCount: 8,
-      lineLength: 120,
-      colors: true,
-      printEmojis: true,
-      dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart
-    ),
+        methodCount: 2,
+        errorMethodCount: 8,
+        lineLength: 120,
+        colors: true,
+        printEmojis: true,
+        dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart),
   );
 
   final List<Map<String, dynamic>> _logBuffer = [];
@@ -50,7 +48,8 @@ class CodeQualityService {
     _logger.t(message, error: error, stackTrace: stackTrace);
   }
 
-  void _addToBuffer(String level, String message, [dynamic error, StackTrace? stackTrace]) {
+  void _addToBuffer(String level, String message,
+      [dynamic error, StackTrace? stackTrace]) {
     _logBuffer.add({
       'timestamp': DateTime.now().toIso8601String(),
       'level': level,
@@ -78,8 +77,10 @@ class CodeQualityService {
   }
 
   // Network requests
-  void logNetworkRequest(String url, String method, int statusCode, Duration duration) {
-    final message = 'Network: $method $url - $statusCode (${duration.inMilliseconds}ms)';
+  void logNetworkRequest(
+      String url, String method, int statusCode, Duration duration) {
+    final message =
+        'Network: $method $url - $statusCode (${duration.inMilliseconds}ms)';
     logInfo(message);
   }
 
@@ -128,25 +129,29 @@ class CodeQualityService {
 
   // Cache operations
   void logCacheOperation(String operation, String key, {int? size}) {
-    final message = 'Cache: $operation $key${size != null ? ' (${size}bytes)' : ''}';
+    final message =
+        'Cache: $operation $key${size != null ? ' (${size}bytes)' : ''}';
     logInfo(message);
   }
 
   // Background tasks
   void logBackgroundTask(String task, Duration duration) {
-    final message = 'Background task: $task completed in ${duration.inMilliseconds}ms';
+    final message =
+        'Background task: $task completed in ${duration.inMilliseconds}ms';
     logInfo(message);
   }
 
   // API responses
   void logApiResponse(String endpoint, int statusCode, Duration duration) {
-    final message = 'API: $endpoint - $statusCode (${duration.inMilliseconds}ms)';
+    final message =
+        'API: $endpoint - $statusCode (${duration.inMilliseconds}ms)';
     logInfo(message);
   }
 
   // File operations
   void logFileOperation(String operation, String path, {int? size}) {
-    final message = 'File: $operation $path${size != null ? ' (${size}bytes)' : ''}';
+    final message =
+        'File: $operation $path${size != null ? ' (${size}bytes)' : ''}';
     logInfo(message);
   }
 
@@ -176,7 +181,8 @@ class CodeQualityService {
 
       final buffer = StringBuffer();
       for (final log in _logBuffer) {
-        buffer.writeln('${log['timestamp']} [${log['level']}] ${log['message']}');
+        buffer
+            .writeln('${log['timestamp']} [${log['level']}] ${log['message']}');
         if (log['error'] != null) {
           buffer.writeln('Error: ${log['error']}');
         }
@@ -214,4 +220,4 @@ class CodeQualityService {
     final end = _logBuffer.length;
     return _logBuffer.sublist(start < 0 ? 0 : start, end);
   }
-} 
+}

@@ -39,7 +39,8 @@ void main() {
     );
   });
 
-  testWidgets('CustomButton with different themes', (WidgetTester tester) async {
+  testWidgets('CustomButton with different themes',
+      (WidgetTester tester) async {
     // Test với theme sáng
     await tester.pumpWidget(
       MaterialApp(
@@ -80,4 +81,4 @@ void main() {
       matchesGoldenFile('goldens/custom_button_dark_theme.png'),
     );
   });
-} 
+}

@@ -12,9 +12,12 @@ class AppSizes {
   static const double huge = 64.0;
 
   // Border radius sizes
-  static const BorderRadius borderRadiusSmall = BorderRadius.all(Radius.circular(8.0));
-  static const BorderRadius borderRadiusMedium = BorderRadius.all(Radius.circular(16.0));
-  static const BorderRadius borderRadiusLarge = BorderRadius.all(Radius.circular(24.0));
+  static const BorderRadius borderRadiusSmall =
+      BorderRadius.all(Radius.circular(8.0));
+  static const BorderRadius borderRadiusMedium =
+      BorderRadius.all(Radius.circular(16.0));
+  static const BorderRadius borderRadiusLarge =
+      BorderRadius.all(Radius.circular(24.0));
 
   // Icon sizes
   static const double iconSizeSmall = 16.0;

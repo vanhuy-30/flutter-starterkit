@@ -172,4 +172,4 @@ class AnalyticsService {
       debugPrint('Failed to log network event: $e');
     }
   }
-} 
+}

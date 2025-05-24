@@ -3,7 +3,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class PushNotificationService {
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
-  final FlutterLocalNotificationsPlugin _localNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _localNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   Future<void> initialize() async {
     NotificationSettings settings = await _messaging.requestPermission();
@@ -21,7 +22,8 @@ class PushNotificationService {
 
   Future<void> _showNotification(RemoteMessage message) async {
     const android = AndroidNotificationDetails(
-      'default_channel', 'Default',
+      'default_channel',
+      'Default',
       importance: Importance.max,
       priority: Priority.high,
     );

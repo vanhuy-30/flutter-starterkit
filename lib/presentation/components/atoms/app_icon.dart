@@ -12,7 +12,6 @@ class AppIcons {
   static const IconData add = Icons.add;
   static const IconData edit = Icons.edit;
   static const IconData delete = Icons.delete;
-
 }
 
 class AppIcon extends StatelessWidget {
@@ -40,11 +39,7 @@ class AppIcon extends StatelessWidget {
 
     if (icon is IconData) {
       // MaterialIcons
-      iconWidget = Icon(
-        icon, 
-        size: defaultSize, 
-        color: defaultColor
-      );
+      iconWidget = Icon(icon, size: defaultSize, color: defaultColor);
     } else if (icon is String) {
       // image asset icon
       iconWidget = Image.asset(
@@ -59,11 +54,11 @@ class AppIcon extends StatelessWidget {
       iconWidget = const SizedBox.shrink();
     }
 
-    return onTap != null 
-      ? GestureDetector(
-          onTap: onTap,
-          child: iconWidget,
-        )
-      : iconWidget;
+    return onTap != null
+        ? GestureDetector(
+            onTap: onTap,
+            child: iconWidget,
+          )
+        : iconWidget;
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/core/theme/colors.dart';
 
 class SquareAvatar extends StatelessWidget {
-
   final ImageProvider? imageProvider;
   final String? networkImageUrl;
   final String? assetImagePath;
@@ -63,7 +62,7 @@ class SquareAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageProvider = _getImageProvider();
-    
+
     Widget avatarContent = child ?? Container();
 
     if (imageProvider != null) {
@@ -71,19 +70,22 @@ class SquareAvatar extends StatelessWidget {
         image: imageProvider,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
-          return errorWidget ?? Icon(
-            Icons.person, 
-            size: width ?? 50,
-            color: Colors.grey,
-          );
+          return errorWidget ??
+              Icon(
+                Icons.person,
+                size: width ?? 50,
+                color: Colors.grey,
+              );
         },
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
-          return placeholder ?? CircularProgressIndicator(
-            value: loadingProgress.expectedTotalBytes != null
-              ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-              : null,
-          );
+          return placeholder ??
+              CircularProgressIndicator(
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                    : null,
+              );
         },
       );
     }
@@ -102,15 +104,16 @@ class SquareAvatar extends StatelessWidget {
               width: borderWidth,
             ),
             boxShadow: enableShadow
-              ? [
-                  customShadow ?? BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3),
-                  )
-                ]
-              : null,
+                ? [
+                    customShadow ??
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        )
+                  ]
+                : null,
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(borderRadius),

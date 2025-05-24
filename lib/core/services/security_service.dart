@@ -9,15 +9,15 @@ import 'dart:async';
 class SecurityService {
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
   final LocalAuthentication _localAuth = LocalAuthentication();
-  
+
   // Rate limiting
   final Map<String, List<DateTime>> _attempts = {};
   final int _maxAttempts = 5;
   final Duration _lockoutDuration = const Duration(minutes: 15);
-  
+
   // Encryption key (in production, this should be stored securely)
   static const String _encryptionKey = 'your-32-char-encryption-key-here';
-  
+
   // Secure storage operations
   Future<void> saveSecureData(String key, String value) async {
     try {
@@ -121,11 +121,11 @@ class SecurityService {
     try {
       final parts = encryptedData.split(':');
       if (parts.length != 2) throw Exception('Invalid encrypted data format');
-      
+
       final iv = parts[0];
       final encrypted = parts[1];
       final key = _encryptionKey.padRight(32).substring(0, 32);
-      
+
       return _aesDecrypt(encrypted, key, iv);
     } catch (e) {
       debugPrint('Failed to decrypt data: $e');
@@ -169,12 +169,12 @@ class SecurityService {
   bool isRateLimited(String key) {
     final now = DateTime.now();
     _attempts[key] ??= [];
-    
+
     // Remove old attempts
     _attempts[key]!.removeWhere(
       (attempt) => now.difference(attempt) > _lockoutDuration,
     );
-    
+
     return _attempts[key]!.length >= _maxAttempts;
   }
 
@@ -185,17 +185,15 @@ class SecurityService {
 
   Duration getRemainingLockoutTime(String key) {
     if (!isRateLimited(key)) return Duration.zero;
-    
+
     final oldestAttempt = _attempts[key]!.reduce(
       (a, b) => a.isBefore(b) ? a : b,
     );
-    
+
     final lockoutEnd = oldestAttempt.add(_lockoutDuration);
     final now = DateTime.now();
-    
-    return lockoutEnd.isAfter(now)
-        ? lockoutEnd.difference(now)
-        : Duration.zero;
+
+    return lockoutEnd.isAfter(now) ? lockoutEnd.difference(now) : Duration.zero;
   }
 
   // Biometric authentication
@@ -264,4 +262,4 @@ class SecurityService {
       return false;
     }
   }
-} 
+}

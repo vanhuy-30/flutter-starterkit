@@ -31,4 +31,4 @@ class AuthRepositoryImpl implements AuthRepository {
     // TODO: Implement Phone login
     await Future.delayed(const Duration(seconds: 2));
   }
-} 
+}

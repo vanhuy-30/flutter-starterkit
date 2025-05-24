@@ -27,7 +27,8 @@ class AppRatingStars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: isInteractive ? (details) => _handleTapDown(context, details) : null,
+      onTapDown:
+          isInteractive ? (details) => _handleTapDown(context, details) : null,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: List.generate(maxRating, (index) {

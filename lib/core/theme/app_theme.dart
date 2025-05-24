@@ -22,14 +22,16 @@ class AppTheme {
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.whiteColor,
-      titleTextStyle: TextStyle(color: AppColors.textPrimaryColor, fontSize: AppSizes.fontSizeLarge),
+      titleTextStyle: TextStyle(
+          color: AppColors.textPrimaryColor, fontSize: AppSizes.fontSizeLarge),
       iconTheme: IconThemeData(color: AppColors.primaryColor),
     ),
     buttonTheme: const ButtonThemeData(
       buttonColor: AppColors.buttonColor,
       textTheme: ButtonTextTheme.primary,
     ),
-    bottomSheetTheme: const BottomSheetThemeData(backgroundColor: AppColors.whiteColor),
+    bottomSheetTheme:
+        const BottomSheetThemeData(backgroundColor: AppColors.whiteColor),
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -48,13 +50,16 @@ class AppTheme {
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.darkPrimary,
-      titleTextStyle: TextStyle(color: AppColors.darkThemeTextColor, fontSize: AppSizes.fontSizeLarge),
+      titleTextStyle: TextStyle(
+          color: AppColors.darkThemeTextColor,
+          fontSize: AppSizes.fontSizeLarge),
       iconTheme: IconThemeData(color: AppColors.primaryColor),
     ),
     buttonTheme: const ButtonThemeData(
       buttonColor: AppColors.buttonColor,
       textTheme: ButtonTextTheme.primary,
     ),
-    bottomSheetTheme: const BottomSheetThemeData(backgroundColor: AppColors.whiteColor),
+    bottomSheetTheme:
+        const BottomSheetThemeData(backgroundColor: AppColors.whiteColor),
   );
 }

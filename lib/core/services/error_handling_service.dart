@@ -3,7 +3,8 @@ import 'package:logger/logger.dart';
 import 'dart:async';
 
 class ErrorHandlingService {
-  static final ErrorHandlingService _instance = ErrorHandlingService._internal();
+  static final ErrorHandlingService _instance =
+      ErrorHandlingService._internal();
   factory ErrorHandlingService() => _instance;
   ErrorHandlingService._internal();
 
@@ -198,4 +199,4 @@ class ErrorEvent {
     this.context,
     required this.timestamp,
   });
-} 
+}
