@@ -94,6 +94,10 @@ dependencies:
 
   # documentation
   markdown: ^7.3.0
+  http: ^1.2.0
+
+  # deep linking
+  app_links: ^6.4.0
 
   cupertino_icons: ^1.0.8
 
