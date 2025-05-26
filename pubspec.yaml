@@ -99,6 +99,9 @@ dependencies:
   # deep linking
   app_links: ^6.4.0
 
+  # background tasks
+  workmanager: ^0.5.2
+
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
