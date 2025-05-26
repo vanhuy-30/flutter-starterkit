@@ -1,5 +1,6 @@
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_starter_kit/core/routes/router.dart';
 import 'package:flutter_starter_kit/core/services/hive_service.dart';
 import 'package:flutter_starter_kit/core/services/locale_service.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_starter_kit/core/theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_starter_kit/presentation/view_model/language_view_model.dart';
 import 'package:provider/provider.dart';
-
 import 'data/repositories/auth_repository_impl.dart';
 import 'domain/usecases/login_usecase.dart';
 import 'presentation/viewmodels/login_viewmodel.dart';
@@ -39,6 +39,12 @@ Future<void> main() async {
 
   // Initialize use cases
   final loginUseCase = LoginUseCase(authRepository);
+
+  // Set preferred orientations
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   runApp(
     EasyLocalization(
