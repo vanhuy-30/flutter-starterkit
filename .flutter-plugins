@@ -1,4 +1,7 @@
 # This is a generated file; do not edit or check into version control.
+app_links=/Users/vanhuy/.pub-cache/hosted/pub.dev/app_links-6.4.0/
+app_links_linux=/Users/vanhuy/.pub-cache/hosted/pub.dev/app_links_linux-1.0.3/
+app_links_web=/Users/vanhuy/.pub-cache/hosted/pub.dev/app_links_web-1.0.4/
 connectivity_plus=/Users/vanhuy/.pub-cache/hosted/pub.dev/connectivity_plus-6.1.3/
 device_info_plus=/Users/vanhuy/.pub-cache/hosted/pub.dev/device_info_plus-9.1.2/
 firebase_analytics=/Users/vanhuy/.pub-cache/hosted/pub.dev/firebase_analytics-11.4.5/
@@ -20,6 +23,7 @@ flutter_secure_storage_linux=/Users/vanhuy/.pub-cache/hosted/pub.dev/flutter_sec
 flutter_secure_storage_macos=/Users/vanhuy/.pub-cache/hosted/pub.dev/flutter_secure_storage_macos-3.1.3/
 flutter_secure_storage_web=/Users/vanhuy/.pub-cache/hosted/pub.dev/flutter_secure_storage_web-1.2.1/
 flutter_secure_storage_windows=/Users/vanhuy/.pub-cache/hosted/pub.dev/flutter_secure_storage_windows-3.1.2/
+gtk=/Users/vanhuy/.pub-cache/hosted/pub.dev/gtk-2.1.0/
 integration_test=/Users/vanhuy/fvm/versions/3.29.0/packages/integration_test/
 local_auth=/Users/vanhuy/.pub-cache/hosted/pub.dev/local_auth-2.3.0/
 local_auth_android=/Users/vanhuy/.pub-cache/hosted/pub.dev/local_auth_android-1.0.47/
