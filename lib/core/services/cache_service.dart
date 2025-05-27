@@ -163,7 +163,7 @@ class CacheService {
         return fromJson(cacheData.value as Map<String, dynamic>);
       }
       
-      return cacheData.value as T;
+      return cacheData.value;
     } catch (e) {
       debugPrint('Error getting data from cache: $e');
       return null;
