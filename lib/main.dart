@@ -5,6 +5,7 @@ import 'package:flutter_starter_kit/core/routes/router.dart';
 import 'package:flutter_starter_kit/core/services/hive_service.dart';
 import 'package:flutter_starter_kit/core/services/locale_service.dart';
 import 'package:flutter_starter_kit/core/services/preferences_service.dart';
+import 'package:flutter_starter_kit/core/services/biometric_service.dart';
 import 'package:flutter_starter_kit/core/theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_starter_kit/presentation/view_model/language_view_model.dart';
@@ -28,6 +29,10 @@ Future<void> main() async {
   PreferencesService preferencesService = PreferencesService();
   await preferencesService.init();
   final localeService = LocaleService();
+
+  // Initialize biometric service
+  final biometricService = BiometricService();
+  await biometricService.initialize();
 
   const supportedLocales = [
     Locale('en'),
@@ -56,6 +61,7 @@ Future<void> main() async {
       child: MultiProvider(
         providers: [
           Provider.value(value: hiveService),
+          Provider.value(value: biometricService),
           Provider<LoginUseCase>.value(value: loginUseCase),
           ChangeNotifierProvider(
             create: (_) => LanguageViewModel(
