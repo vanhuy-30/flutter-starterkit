@@ -102,6 +102,9 @@ dependencies:
   # background tasks
   workmanager: ^0.5.2
 
+  # app update
+  upgrader: ^11.3.1
+
   cupertino_icons: ^1.0.8
 
   # file handling
