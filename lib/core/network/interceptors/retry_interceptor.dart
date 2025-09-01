@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import '../services/retry_service.dart';
+import '../../services/retry_service.dart';
 
 class RetryInterceptor extends Interceptor {
   final RetryService _retryService;

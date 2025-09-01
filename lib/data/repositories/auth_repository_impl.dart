@@ -1,4 +1,4 @@
-import 'package:flutter_starter_kit/domain/models/login_request.dart';
+import 'package:flutter_starter_kit/domain/entities/login_request.dart';
 import 'package:flutter_starter_kit/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_starter_kit/presentation/shared/widgets/custom_button.dart';
+import 'package:flutter_starter_kit/presentation/components/atoms/buttons/custom_button.dart';
 
 void main() {
   testWidgets('CustomButton displays text correctly',

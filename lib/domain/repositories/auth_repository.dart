@@ -1,4 +1,4 @@
-import 'package:flutter_starter_kit/domain/models/login_request.dart';
+import 'package:flutter_starter_kit/domain/entities/login_request.dart';
 
 abstract class AuthRepository {
   Future<void> login(LoginRequest request);
