@@ -8,7 +8,7 @@ import 'package:flutter_starter_kit/core/services/preferences_service.dart';
 import 'package:flutter_starter_kit/core/services/biometric_service.dart';
 import 'package:flutter_starter_kit/core/theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_starter_kit/presentation/view_model/language_view_model.dart';
+import 'package:flutter_starter_kit/presentation/viewmodels/language_view_model.dart';
 import 'package:provider/provider.dart';
 import 'data/repositories/auth_repository_impl.dart';
 import 'domain/usecases/login_usecase.dart';

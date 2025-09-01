@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/domain/models/login_request.dart';
+import 'package:flutter_starter_kit/domain/entities/login_request.dart';
 import 'package:flutter_starter_kit/domain/usecases/login_usecase.dart';
 
 class LoginViewModel extends ChangeNotifier {

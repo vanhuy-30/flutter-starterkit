@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import '../services/rate_limiter_service.dart';
+import '../../services/rate_limiter_service.dart';
 
 class RateLimitInterceptor extends Interceptor {
   final RateLimiterService _rateLimiter;
