@@ -4,7 +4,7 @@ import 'package:flutter_starter_kit/core/theme/sizes.dart';
 
 class AppTextField extends StatelessWidget {
   final String hintText;
-  final String? lableText;
+  final String? labelText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextEditingController controller;
@@ -29,7 +29,7 @@ class AppTextField extends StatelessWidget {
   const AppTextField({
     super.key,
     required this.hintText,
-    this.lableText,
+    this.labelText,
     this.prefixIcon,
     this.suffixIcon,
     required this.controller,
@@ -70,34 +70,35 @@ class AppTextField extends StatelessWidget {
         onEditingComplete: onEditingComplete,
         onFieldSubmitted: onFieldSubmitted,
         cursorColor: cursorColor ?? AppColors.primaryColor,
-        decoration: decoration ?? InputDecoration(
-          hintText: hintText,
-          labelText: lableText,
-          errorText: errorText,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          filled: true,
-          fillColor: fillColor ?? AppColors.backgroundColor,
-          border: const OutlineInputBorder(
-            borderRadius: AppSizes.borderRadiusMedium,
-            borderSide: BorderSide(color: AppColors.greyColor),
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderRadius: AppSizes.borderRadiusMedium,
-            borderSide: BorderSide(
-              color: AppColors.greyColor,
+        decoration: decoration ??
+            InputDecoration(
+              hintText: hintText,
+              labelText: labelText,
+              errorText: errorText,
+              prefixIcon: prefixIcon,
+              suffixIcon: suffixIcon,
+              filled: true,
+              fillColor: fillColor ?? AppColors.backgroundColor,
+              border: const OutlineInputBorder(
+                borderRadius: AppSizes.borderRadiusMedium,
+                borderSide: BorderSide(color: AppColors.greyColor),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderRadius: AppSizes.borderRadiusMedium,
+                borderSide: BorderSide(
+                  color: AppColors.greyColor,
+                ),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderRadius: AppSizes.borderRadiusMedium,
+                borderSide: BorderSide(
+                  color: AppColors.primaryColor,
+                  width: 2.0,
+                ),
+              ),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: AppSizes.borderRadiusMedium,
-            borderSide: BorderSide(
-              color: AppColors.primaryColor,
-              width: 2.0,
-            ),
-          ),
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        ),
       ),
     );
   }

@@ -11,16 +11,20 @@ class LanguageViewModel extends ChangeNotifier {
   final List<Locale> supportedLocales;
 
   static List<LocaleModel> languages = [
-    LocaleModel(locale: const Locale('en'), name: 'English', flagPath: icEnglandFlag),
-    LocaleModel(locale: const Locale('vi'), name: 'Tiếng Việt', flagPath: icVietnamFlag),
+    LocaleModel(
+        locale: const Locale('en'), name: 'English', flagPath: icEnglandFlag),
+    LocaleModel(
+        locale: const Locale('vi'),
+        name: 'Tiếng Việt',
+        flagPath: icVietnamFlag),
   ];
 
   LanguageViewModel({
     required PreferencesService preferencesService,
     required LocaleService localeService,
     required this.supportedLocales,
-  }) : _preferencesService = preferencesService,
-       _localeService = localeService {
+  })  : _preferencesService = preferencesService,
+        _localeService = localeService {
     _loadInitialLanguage();
   }
 
@@ -29,7 +33,8 @@ class LanguageViewModel extends ChangeNotifier {
 
   void _loadInitialLanguage() {
     final savedLocale = _preferencesService.getLocale();
-    _currentLocale = savedLocale ?? _localeService.getDefaultLocale(supportedLocales);
+    _currentLocale =
+        savedLocale ?? _localeService.getDefaultLocale(supportedLocales);
     notifyListeners();
   }
 

@@ -4,8 +4,8 @@ import 'package:flutter_starter_kit/core/theme/colors.dart';
 import 'package:flutter_starter_kit/data/models/locale_model.dart';
 import 'package:flutter_starter_kit/presentation/components/atoms/app_drop_down_field.dart';
 import 'package:flutter_starter_kit/presentation/components/atoms/app_text.dart';
-import 'package:flutter_starter_kit/presentation/components/mocules/navigation/appbar.dart';
-import 'package:flutter_starter_kit/presentation/view_model/language_view_model.dart';
+import 'package:flutter_starter_kit/presentation/components/molecules/appbar.dart';
+import 'package:flutter_starter_kit/presentation/viewmodels/language_view_model.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {

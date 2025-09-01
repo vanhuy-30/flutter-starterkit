@@ -1,48 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/core/utils/utils.dart';
+import '/core/utils/utils.dart';
+import '/presentation/components/atoms/text_fields/app_text_field.dart';
+import '/presentation/components/atoms/text_fields/password_text_field.dart';
+import '/presentation/components/molecules/social_login_button.dart';
+import '/presentation/pages/register_page.dart';
+import '/presentation/viewmodels/login_viewmodel.dart';
+import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => LoginViewModel(context.read()),
+      child: const _LoginView(),
+    );
+  }
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  bool _obscurePassword = true;
+class _LoginView extends StatelessWidget {
+  const _LoginView();
 
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  Widget _buildSocialLoginButton({
-    required IconData icon,
-    required String label,
-    required VoidCallback onPressed,
-    required Color color,
-  }) {
-    return ElevatedButton.icon(
-      icon: Icon(icon, color: Colors.white, size: 20),
-      label: Text(label, style: const TextStyle(color: Colors.white)),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-      ),
-      onPressed: onPressed,
-    );
+  VoidCallback _wrapCallback(Future<void> Function()? callback) {
+    return () {
+      if (callback != null) {
+        callback();
+      }
+    };
   }
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<LoginViewModel>();
+    final formKey = GlobalKey<FormState>();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -53,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(24.0),
             child: Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -79,18 +71,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 32.0),
-                  TextFormField(
-                    controller: _usernameController,
-                    decoration: InputDecoration(
-                      labelText: 'Tên đăng nhập hoặc Email',
-                      hintText: 'Nhập tên đăng nhập của bạn',
-                      prefixIcon: const Icon(Icons.person_outline),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      filled: true,
-                      fillColor: Colors.grey[100],
-                    ),
+                  AppTextField(
+                    controller: viewModel.usernameController,
+                    labelText: 'Tên đăng nhập hoặc Email',
+                    hintText: 'Nhập tên đăng nhập của bạn',
+                    prefixIcon: const Icon(Icons.person_outline),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Vui lòng nhập tên đăng nhập';
@@ -99,28 +84,19 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   const SizedBox(height: 16.0),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: _obscurePassword,
-                    decoration: InputDecoration(
-                      labelText: 'Mật khẩu',
-                      hintText: 'Nhập mật khẩu của bạn',
-                      prefixIcon: const Icon(Icons.lock_outline),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscurePassword = !_obscurePassword;
-                          });
-                        },
+                  PasswordTextField(
+                    controller: viewModel.passwordController,
+                    labelText: 'Mật khẩu',
+                    hintText: 'Nhập mật khẩu của bạn',
+                    prefixIcon: const Icon(Icons.lock_outline),
+                    obscureText: viewModel.obscurePassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        viewModel.obscurePassword
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      filled: true,
-                      fillColor: Colors.grey[100],
+                      onPressed: viewModel.togglePasswordVisibility,
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -147,14 +123,20 @@ class _LoginPageState extends State<LoginPage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).primaryColor,
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      textStyle: const TextStyle(fontSize: 18.0, color: Colors.white),
+                      textStyle:
+                          const TextStyle(fontSize: 18.0, color: Colors.white),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       elevation: 5,
                     ),
-                    onPressed: () {},
-                    child: const Text('Đăng Nhập', style: TextStyle(color: Colors.white)),
+                    onPressed: viewModel.isLoading
+                        ? null
+                        : _wrapCallback(viewModel.login),
+                    child: viewModel.isLoading
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text('Đăng Nhập',
+                            style: TextStyle(color: Colors.white)),
                   ),
                   const SizedBox(height: 24.0),
                   Row(
@@ -174,36 +156,44 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      _buildSocialLoginButton(
+                      SocialLoginButton(
                         icon: Icons.phone_android,
                         label: 'Điện thoại',
-                        onPressed: () {},
+                        onPressed: viewModel.isLoading
+                            ? () {}
+                            : _wrapCallback(viewModel.loginWithPhone),
                         color: Colors.green,
                       ),
-                       _buildSocialLoginButton(
+                      SocialLoginButton(
                         icon: Icons.mail_outline,
                         label: 'Gmail',
-                        onPressed: () {},
+                        onPressed: viewModel.isLoading
+                            ? () {}
+                            : _wrapCallback(viewModel.loginWithGoogle),
                         color: Colors.red,
                       ),
                     ],
                   ),
                   const SizedBox(height: 16.0),
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      _buildSocialLoginButton(
+                      SocialLoginButton(
                         icon: Icons.facebook,
                         label: 'Facebook',
-                        onPressed: () {},
+                        onPressed: viewModel.isLoading
+                            ? () {}
+                            : _wrapCallback(viewModel.loginWithFacebook),
                         color: Colors.blue.shade800,
                       ),
-                        _buildSocialLoginButton(
-                          icon: Icons.apple,
-                          label: 'Apple',
-                          onPressed: () {},
-                          color: Colors.black,
-                        ),
+                      SocialLoginButton(
+                        icon: Icons.apple,
+                        label: 'Apple',
+                        onPressed: viewModel.isLoading
+                            ? () {}
+                            : _wrapCallback(viewModel.loginWithApple),
+                        color: Colors.black,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 32.0),
@@ -213,7 +203,11 @@ class _LoginPageState extends State<LoginPage> {
                       const Text("Chưa có tài khoản? "),
                       TextButton(
                         onPressed: () {
-                          showAppSnackBar(context, 'Chức năng đăng ký');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RegisterPage()),
+                          );
                         },
                         child: const Text(
                           'Đăng ký ngay',

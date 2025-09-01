@@ -5,7 +5,8 @@ class SkeletonCard extends StatelessWidget {
   final double height;
   final double width;
 
-  const SkeletonCard({super.key, this.height = 120, this.width = double.infinity});
+  const SkeletonCard(
+      {super.key, this.height = 120, this.width = double.infinity});
 
   @override
   Widget build(BuildContext context) {

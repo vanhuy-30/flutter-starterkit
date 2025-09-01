@@ -1,5 +1,16 @@
 {
     "app_name": "Flutter starter kit project",
+    "wellcome_message": "Wellcome to Flutter Starter Kit",
     "search_hint": "Type to search...",
-    "wellcome_message": "Wellcome to Flutter Starter Kit"
+    "cancel": "Cancel",
+    "try_again": "Try again",
+    "update_app": "Update App",
+    "skip": "Skip",
+    "later": "Later",
+    "update": "Update",
+    "release_notes": "Release Notes",
+    "new_version": "New Version",
+    "whats_new": "What's New",
+    "biometric_auth_title": "Biometric Authentication",
+    "biometric_auth_message": "Please authenticate to continue"
 }

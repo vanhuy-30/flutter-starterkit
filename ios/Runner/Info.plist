@@ -54,5 +54,26 @@
 		<true/>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
+		
+		<!-- Deep Links -->
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLName</key>
+				<string>flutterstarterkit.com</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>flutterstarterkit</string>
+				</array>
+			</dict>
+		</array>
+		
+		<!-- Universal Links -->
+		<key>com.apple.developer.associated-domains</key>
+		<array>
+			<string>applinks:flutterstarterkit.com</string>
+		</array>
 	</dict>
 </plist>

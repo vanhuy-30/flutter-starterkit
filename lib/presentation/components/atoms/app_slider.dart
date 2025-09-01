@@ -32,7 +32,8 @@ class AppSlider extends StatelessWidget {
     return SliderTheme(
       data: SliderTheme.of(context).copyWith(
         activeTrackColor: activeColor ?? AppColors.primaryColor,
-        inactiveTrackColor: inactiveColor ?? AppColors.primaryColor.withOpacity(0.3),
+        inactiveTrackColor:
+            inactiveColor ?? AppColors.primaryColor.withOpacity(0.3),
       ),
       child: Slider(
         value: value,

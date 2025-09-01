@@ -64,7 +64,7 @@ class AppCircularAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageProvider = _getImageProvider();
-    
+
     Widget avatarContent = child ?? Container();
 
     if (imageProvider != null) {
@@ -72,19 +72,22 @@ class AppCircularAvatar extends StatelessWidget {
         image: imageProvider,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
-          return errorWidget ?? Icon(
-            Icons.person, 
-            size: radius,
-            color: AppColors.greyColor,
-          );
+          return errorWidget ??
+              Icon(
+                Icons.person,
+                size: radius,
+                color: AppColors.greyColor,
+              );
         },
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
-          return placeholder ?? CircularProgressIndicator(
-            value: loadingProgress.expectedTotalBytes != null
-              ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-              : null,
-          );
+          return placeholder ??
+              CircularProgressIndicator(
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                    : null,
+              );
         },
       );
     }
@@ -103,15 +106,16 @@ class AppCircularAvatar extends StatelessWidget {
               width: borderWidth,
             ),
             boxShadow: enableShadow
-              ? [
-                  customShadow ?? BoxShadow(
-                    color: AppColors.blackColor.withOpacity(0.1),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3),
-                  )
-                ]
-              : null,
+                ? [
+                    customShadow ??
+                        BoxShadow(
+                          color: AppColors.blackColor.withOpacity(0.1),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        )
+                  ]
+                : null,
           ),
           child: ClipOval(
             child: avatarContent,
@@ -134,11 +138,12 @@ class AppCircularAvatar extends StatelessWidget {
                     width: 2,
                   ),
                 ),
-                child: editIcon ?? Icon(
-                  Icons.edit,
-                  size: editIconSize,
-                  color: editIconColor ?? AppColors.whiteColor,
-                ),
+                child: editIcon ??
+                    Icon(
+                      Icons.edit,
+                      size: editIconSize,
+                      color: editIconColor ?? AppColors.whiteColor,
+                    ),
               ),
             ),
           ),

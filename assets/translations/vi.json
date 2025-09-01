@@ -1,5 +1,16 @@
 {
-    "app_name": "Dự án Flutter starter kit",
+    "app_name": "Flutter Starter Kit",
+    "wellcome_message": "Chào mừng đến với Flutter Starter Kit",
     "search_hint": "Nhập để tìm kiếm...",
-    "wellcome_message": "Chào mừng đến với Flutter Starter Kit"
+    "cancel": "Hủy",
+    "try_again": "Thử lại",
+    "update_app": "Cập nhật ứng dụng",
+    "skip": "Bỏ qua",
+    "later": "Để sau",
+    "update": "Cập nhật",
+    "release_notes": "Ghi chú phát hành",
+    "new_version": "Phiên bản mới",
+    "whats_new": "Có gì mới",
+    "biometric_auth_title": "Xác thực sinh trắc học",
+    "biometric_auth_message": "Vui lòng xác thực để tiếp tục"
 }
