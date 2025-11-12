@@ -13,13 +13,13 @@ class NetworkInfo {
   Stream<bool> get onNetworkStatusChange => _networkStatusController.stream;
 
   Future<bool> isConnected() async {
-    var connectivityResults = await _connectivity.checkConnectivity();
+    final connectivityResults = await _connectivity.checkConnectivity();
     return connectivityResults.isNotEmpty &&
         !connectivityResults.contains(ConnectivityResult.none);
   }
 
   void _updateNetworkStatus(List<ConnectivityResult> results) {
-    bool hasConnection =
+    final hasConnection =
         results.isNotEmpty && !results.contains(ConnectivityResult.none);
     _networkStatusController.add(hasConnection);
   }

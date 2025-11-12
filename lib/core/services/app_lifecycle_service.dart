@@ -64,7 +64,8 @@ class AppLifecycleService {
     debugPrint('App resumed');
     if (_backgroundTime != null) {
       _backgroundDuration = DateTime.now().difference(_backgroundTime!);
-      debugPrint('App was in background for: ${_backgroundDuration?.inSeconds} seconds');
+      debugPrint(
+          'App was in background for: ${_backgroundDuration?.inSeconds} seconds');
       _backgroundTime = null;
     }
   }
@@ -104,4 +105,4 @@ class AppLifecycleService {
     _subscription?.cancel();
     _lifecycleController.close();
   }
-} 
+}

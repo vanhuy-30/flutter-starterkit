@@ -11,7 +11,8 @@ class CacheException implements Exception {
   CacheException(this.message, [this.error]);
 
   @override
-  String toString() => 'CacheException: $message${error != null ? ' ($error)' : ''}';
+  String toString() =>
+      'CacheException: $message${error != null ? ' ($error)' : ''}';
 }
 
 class CacheService {
@@ -22,10 +23,10 @@ class CacheService {
   static const String _cacheBoxName = 'app_cache';
   static const Duration _defaultExpiration = Duration(days: 7);
   static const int _maxCacheSize = 1000; // Maximum number of items in cache
-  
+
   @protected
   late Box _cacheBox;
-  
+
   @protected
   bool _isInitialized = false;
 
@@ -35,17 +36,17 @@ class CacheService {
 
     try {
       final cacheDir = await getApplicationSupportDirectory();
-      
+
       // Initialize Hive
       Hive.init(cacheDir.path);
-      
+
       // Open cache box
       _cacheBox = await Hive.openBox(_cacheBoxName);
       _isInitialized = true;
-      
+
       // Start cache cleanup
       _startCacheCleanup();
-      
+
       debugPrint('Cache service initialized successfully');
     } catch (e) {
       throw CacheException('Failed to initialize cache service', e);
@@ -121,7 +122,8 @@ class CacheService {
         if (cachedString != null) {
           try {
             final cacheData = CacheData.fromJson(jsonDecode(cachedString));
-            if (oldestTimestamp == null || cacheData.timestamp.isBefore(oldestTimestamp)) {
+            if (oldestTimestamp == null ||
+                cacheData.timestamp.isBefore(oldestTimestamp)) {
               oldestKey = key.toString();
               oldestTimestamp = cacheData.timestamp;
             }
@@ -152,7 +154,7 @@ class CacheService {
       if (cachedString == null) return null;
 
       final cacheData = CacheData<T>.fromJson(jsonDecode(cachedString));
-      
+
       // Check if data is expired
       if (cacheData.isExpired) {
         await _cacheBox.delete(key);
@@ -162,7 +164,7 @@ class CacheService {
       if (fromJson != null) {
         return fromJson(cacheData.value as Map<String, dynamic>);
       }
-      
+
       return cacheData.value;
     } catch (e) {
       debugPrint('Error getting data from cache: $e');
@@ -268,4 +270,4 @@ class CacheData<T> {
       expiration: Duration(seconds: json['expiration']),
     );
   }
-} 
+}

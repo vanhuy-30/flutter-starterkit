@@ -1,5 +1,6 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 /// Displays a SnackBar with a custom message and optional styling.
 void showAppSnackBar(BuildContext context, String message,
@@ -19,13 +20,13 @@ Future<void> showAppDialog({
   required BuildContext context,
   required String title,
   required String content,
-  String confirmText = 'OK',
+  String confirmText = 'ok',
   VoidCallback? onConfirm,
 }) {
   return showDialog<void>(
     context: context,
     builder: (_) => AlertDialog(
-      title: Text(title),
+      title: Text(title.tr()),
       content: Text(content),
       actions: [
         TextButton(
@@ -33,7 +34,7 @@ Future<void> showAppDialog({
             Navigator.of(context).pop();
             if (onConfirm != null) onConfirm();
           },
-          child: Text(confirmText),
+          child: Text(confirmText.tr()),
         )
       ],
     ),
@@ -71,12 +72,12 @@ Future<DateTime?> pickSingleDate({
   DateTime? initialDate,
   DateTime? firstDate,
   DateTime? lastDate,
-  String title = 'Select a date',
+  String title = 'select_date',
 }) async {
   final results = await showDialog<List<DateTime?>>(
     context: context,
     builder: (_) => AlertDialog(
-      title: Text(title),
+      title: Text(title.tr()),
       content: SizedBox(
         height: 300,
         child: CalendarDatePicker2WithActionButtons(
@@ -92,13 +93,13 @@ Future<DateTime?> pickSingleDate({
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context, null),
-          child: const Text('Cancel'),
+          child: Text('cancel'.tr()),
         ),
         TextButton(
           onPressed: () => Navigator.pop(context, [
             ...[initialDate ?? DateTime.now()]
           ]),
-          child: const Text('Select'),
+          child: Text('select'.tr()),
         ),
       ],
     ),
@@ -113,12 +114,12 @@ Future<List<DateTime?>> pickDateRange({
   List<DateTime?>? initialDates,
   DateTime? firstDate,
   DateTime? lastDate,
-  String title = 'Select date range',
+  String title = 'select_date_range',
 }) async {
   final results = await showDialog<List<DateTime?>>(
     context: context,
     builder: (_) => AlertDialog(
-      title: Text(title),
+      title: Text(title.tr()),
       content: SizedBox(
         height: 300,
         child: CalendarDatePicker2WithActionButtons(
@@ -134,11 +135,11 @@ Future<List<DateTime?>> pickDateRange({
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context, null),
-          child: const Text('Cancel'),
+          child: Text('cancel'.tr()),
         ),
         TextButton(
           onPressed: () => Navigator.pop(context, initialDates),
-          child: const Text('Select'),
+          child: Text('select'.tr()),
         ),
       ],
     ),

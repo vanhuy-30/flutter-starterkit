@@ -8,7 +8,8 @@ class DeepLinkService {
   factory DeepLinkService() => _instance;
   DeepLinkService._internal();
 
-  final _deepLinkController = StreamController<Map<String, dynamic>>.broadcast();
+  final _deepLinkController =
+      StreamController<Map<String, dynamic>>.broadcast();
   StreamSubscription? _subscription;
   bool _isInitialized = false;
 
@@ -67,4 +68,4 @@ class DeepLinkService {
     _subscription?.cancel();
     _deepLinkController.close();
   }
-} 
+}

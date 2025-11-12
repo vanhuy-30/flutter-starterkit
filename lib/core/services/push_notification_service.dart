@@ -7,16 +7,14 @@ class PushNotificationService {
       FlutterLocalNotificationsPlugin();
 
   Future<void> initialize() async {
-    NotificationSettings settings = await _messaging.requestPermission();
+    final NotificationSettings settings = await _messaging.requestPermission();
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       const android = AndroidInitializationSettings('@mipmap/ic_launcher');
       const settings = InitializationSettings(android: android);
       await _localNotificationsPlugin.initialize(settings);
 
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        _showNotification(message);
-      });
+      FirebaseMessaging.onMessage.listen(_showNotification);
     }
   }
 
