@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/shared/assests/images.dart';
+import 'package:flutter_starter_kit/shared/assets/images.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/avatar_images/app_circular_avatar.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_colors.dart';

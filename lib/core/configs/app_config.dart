@@ -65,4 +65,12 @@ Environment get currentEnvironment {
 }
 
 // Global config instance
-final appConfig = AppConfig.fromEnvironment(currentEnvironment);
+AppConfig? _cachedAppConfig;
+
+AppConfig get appConfig {
+  return _cachedAppConfig ??= AppConfig.fromEnvironment(currentEnvironment);
+}
+
+void configureAppConfig() {
+  _cachedAppConfig = AppConfig.fromEnvironment(currentEnvironment);
+}

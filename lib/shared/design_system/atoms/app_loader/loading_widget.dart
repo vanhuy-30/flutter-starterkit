@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/shared/assests/animations.dart';
+import 'package:flutter_starter_kit/shared/assets/animations.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_colors.dart';
 import 'package:lottie/lottie.dart';

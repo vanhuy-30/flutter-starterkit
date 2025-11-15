@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/shared/assests/images.dart';
+import 'package:flutter_starter_kit/shared/assets/images.dart';
 import 'package:flutter_starter_kit/features/onboarding/presentation/providers/onboarding_providers.dart';
 import 'package:flutter_starter_kit/app/routes/route_paths.dart';
 import 'package:go_router/go_router.dart';

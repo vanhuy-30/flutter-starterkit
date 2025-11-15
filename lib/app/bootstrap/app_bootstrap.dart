@@ -3,11 +3,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/app/app.dart';
+import 'package:flutter_starter_kit/app/providers/app_providers.dart';
+import 'package:flutter_starter_kit/core/configs/app_config.dart';
+import 'package:flutter_starter_kit/core/configs/constants.dart';
+import 'package:flutter_starter_kit/core/services/biometric_service.dart';
 import 'package:flutter_starter_kit/core/services/hive_service.dart';
 import 'package:flutter_starter_kit/core/services/preferences_service.dart';
-import 'package:flutter_starter_kit/core/services/biometric_service.dart';
-import 'package:flutter_starter_kit/app/providers/app_providers.dart';
-import 'package:flutter_starter_kit/core/configs/constants.dart';
 
 /// Bootstrap class to handle app initialization
 class AppBootstrap {
@@ -17,6 +18,7 @@ class AppBootstrap {
     try {
       // Load environment variables
       await dotenv.load(fileName: envFile);
+      configureAppConfig();
 
       // Initialize app
       await AppInitializer.initialize();

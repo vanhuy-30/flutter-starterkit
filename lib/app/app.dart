@@ -61,7 +61,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: themeState.themeMode,
-        routerConfig: router(),
+        routerConfig: appRouter,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: languageState.currentLocale,

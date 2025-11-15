@@ -6,7 +6,7 @@ import 'package:flutter_starter_kit/core/utils/extensions.dart';
 import 'package:flutter_starter_kit/features/auth/presentation/providers/auth_providers.dart';
 import 'package:flutter_starter_kit/features/auth/presentation/view_model/login_notifier.dart';
 import 'package:flutter_starter_kit/features/auth/presentation/widgets/login_form.dart';
-import 'package:flutter_starter_kit/shared/assests/icons.dart';
+import 'package:flutter_starter_kit/shared/assets/icons.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_icon.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_colors.dart';

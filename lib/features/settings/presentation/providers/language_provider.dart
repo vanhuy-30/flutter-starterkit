@@ -1,8 +1,9 @@
 import 'dart:ui';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/core/services/preferences_service.dart';
-import 'package:flutter_starter_kit/shared/assests/icons.dart';
 import 'package:flutter_starter_kit/app/providers/app_providers.dart';
+import 'package:flutter_starter_kit/core/services/preferences_service.dart';
+import 'package:flutter_starter_kit/core/utils/extensions.dart';
+import 'package:flutter_starter_kit/shared/assets/icons.dart';
 
 /// Language model
 class LanguageModel {
@@ -105,6 +106,7 @@ class LanguageNotifier extends StateNotifier<LanguageState> {
       final supportedLocale = availableLanguages
           .where(
               (lang) => lang.locale.languageCode == deviceLocale.languageCode)
+          .toList()
           .firstOrNull;
 
       if (supportedLocale != null) {

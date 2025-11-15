@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_colors.dart';
-import 'package:flutter_starter_kit/shared/assests/icons.dart';
+import 'package:flutter_starter_kit/shared/assets/icons.dart';
 
 /// Simple social login widget with Google, Apple, and Facebook buttons
 class SocialLoginWidget extends StatelessWidget {

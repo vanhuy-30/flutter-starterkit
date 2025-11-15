@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_starter_kit/core/utils/extensions.dart';
-import 'package:flutter_starter_kit/shared/assests/images.dart';
+import 'package:flutter_starter_kit/shared/assets/images.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_colors.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/text_styles.dart';
