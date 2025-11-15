@@ -1,4 +1,4 @@
-import 'package:flutter_starter_kit/data/models/user/user_model.dart';
+import 'package:flutter_starter_kit/features/auth/data/models/user_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveService {
@@ -30,11 +30,11 @@ class HiveService {
     await userBox.put(user.id, user);
   }
 
-  Future<void> deleteUser(int id) async {
+  Future<void> deleteUser(String id) async {
     await userBox.delete(id);
   }
 
-  Future<UserModel?> getUserById(int id) async {
+  Future<UserModel?> getUserById(String id) async {
     return userBox.get(id);
   }
 

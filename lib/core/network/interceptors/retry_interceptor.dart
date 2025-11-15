@@ -21,11 +21,11 @@ class RetryInterceptor extends Interceptor {
     final policy = _getPolicy(err.requestOptions.path);
     if (_shouldRetry(err, policy)) {
       final retryCount = err.requestOptions.extra['retryCount'] ?? 0;
-      
+
       if (retryCount < policy.maxRetries) {
         // Calculate delay with exponential backoff
         final delay = policy.retryDelay * (1 << retryCount);
-        
+
         debugPrint(
           'Retrying request to ${err.requestOptions.path} '
           'after ${delay.inSeconds} seconds. '
@@ -90,11 +90,11 @@ class RetryInterceptor extends Interceptor {
       sendTimeout: requestOptions.sendTimeout,
     );
 
-    return await Dio().request<dynamic>(
+    return Dio().request<dynamic>(
       requestOptions.path,
       data: requestOptions.data,
       queryParameters: requestOptions.queryParameters,
       options: options,
     );
   }
-} 
+}

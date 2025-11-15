@@ -1,0 +1,5 @@
+#include "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-prod.xcconfig"
+#include "Flutter/Release.xcconfig"
+
+PRODUCT_BUNDLE_IDENTIFIER = com.example.flutterStarterKit
+DISPLAY_NAME = MyApp
