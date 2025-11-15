@@ -1,154 +1,149 @@
 # 🚀 Flutter Starter Kit
 
-This Flutter Starter Kit is designed to help you bootstrap production-level apps quickly using **Clean Architecture**, **Riverpod**, **Firebase**, and best UI/UX practices. It’s optimized for scalability, maintainability, and rapid development across multiple environments.
+Production-ready Flutter starter focused on Clean Architecture, Riverpod, Firebase, multi-environment flows, and a complete design system. The goal is to help teams bootstrap fast, keep quality high, and scale with confidence.
 
 ---
 
-## 🧱 Architecture Overview
-
-This project follows a **Clean Architecture** approach, clearly separating concerns into layers:
-
-- **Presentation** – UI layer with MVVM pattern and atomic design
-- **Application / Use Cases** – Core business logic
-- **Domain** – Entity definitions and use case contracts
-- **Data** – Implementations (API, Firebase, local storage)
+## 🌟 Highlights
+- Clean Architecture + MVVM using Riverpod and GetIt.
+- Multi-tab navigation with GoRouter and custom Route Guard.
+- Cross-platform theming (light/dark), Atomic Design System, reusable UI components.
+- Easy Localization for multi-language apps, onboarding flow, biometrics, Hive/SharedPreferences/SecureStorage caching.
+- Firebase core integration (Messaging, Remote Config, Analytics, Performance) plus local notifications.
+- Multi-environment ready (.env + `main_dev/stg/prod`), lint/test/coverage scripts, automated pre-commit hook.
 
 ---
 
-## 📁 Folder Structure
+## 🧱 Architecture & Layers
+- **app/**: bootstrap (`AppBootstrap`), lifecycle, global Riverpod providers, router + guard.
+- **core/**: env config (`Env`, `AppConfig`), networking (Dio + interceptors), error handling, DI (GetIt), infrastructure services (analytics, push, remote config, storage, security, retry, background tasks, ...), utils.
+- **features/**: domain modules (auth, onboarding, home, settings, search) containing data/domain/presentation and Riverpod view models.
+- **shared/**: Atomic design system (atoms → organisms), theme, mixins (cache, biometrics, update), splash/not-found pages, shared view models.
+- **entrypoints**: `main_dev.dart`, `main_stg.dart`, `main_prod.dart` select the matching `.env` and run the bootstrap flow.
 
+---
+
+## 📁 Key Folder Structure
 ```bash
 lib/
-├── core/                   # Configuration, theme, routes, DI, utils
-│   ├── assests/            # Define assests
-│   ├── config/             # Theme, router, environment
-│   ├── di/                 # Service Locator (GetIt)
-│   ├── network/            # Dio setup
-│   ├── routes/             # Route setup
-│   ├── services/           # Firebase, Notifications, Locale, etc.
-│   ├── theme/              # Theme app
-│   └── utils/              # UI helpers, formatters
-│
-├── data/                   # Models, repositories, data sources
-│   ├── models/             # Freezed models
-│   ├── network/            # Dio + Retrofit
-│   ├── firebase/           # Remote config, messaging, etc.
-│   └── local/              # Hive & SharedPreferences
-│
-├── domain/                 # Interfaces and entities
-│   ├── entities/
-│   └── repositories/
-│
-├── presentation/           # UI Layer
-│   ├── pages/              # Screens
-│   ├── viewmodels/         # MVVM ViewModels
-│   └── components/         # Atomic UI: atoms, molecules, organisms, templates
-│
-└── main.dart               # App entry point
+├── app/                 # Bootstrap, routes, global providers, lifecycle
+├── core/                # Configs, env, DI, network, services, utils
+├── features/            # Domain modules (auth, onboarding, settings, ...)
+├── shared/              # Design system, mixins, shared pages/viewmodels
+├── main_dev.dart
+├── main_stg.dart
+└── main_prod.dart
+
+assets/
+├── animations/          # Lottie loaders / not-found
+├── icons/, images/      # Brand & UI assets
+├── translations/        # en.json, vi.json
+└── env/                 # `.env.dev`, `.env.stg`, `.env.prod` (create locally)
+
+test/
+├── unit/
+├── widget/
+├── integration/
+└── golden/
 ```
-
-## 🛠 Features
-
-- ✅ Clean Architecture with MVVM
-
-- ✅ State management using flutter_riverpod
-
-- ✅ Firebase integration: Auth, Remote Config, Messaging
-
-- ✅ Dynamic theme switching (light/dark)
-
-- ✅ Multilingual support with localization
-
-- ✅ Native splash screen via flutter_native_splash
-
-- ✅ Custom Flutter splash screen
-
-- ✅ Reusable Lottie-based loading indicator
-
-- ✅ Shimmer Skeleton loaders for UX
-
-- ✅ Cached image support
-
-- ✅ Modular routing with go_router
-
-- ✅ Support for multiple environments via .env + flutter_flavorizr
-
-- ✅ GetIt service locator
-
-- ✅ Built-in reusable UI utilities (SnackBar, Dialog, BottomSheet)
 
 ---
 
-## 🚀 Getting Started
+## 🌐 Environments & `.env`
+`AppBootstrap.run` loads a `.env` file before initializing services. Add keys like:
+```
+API_URL=https://dev-api.example.com
+ENV=dev
+```
+Create the files:
+- `assets/env/.env.dev`
+- `assets/env/.env.stg`
+- `assets/env/.env.prod`
 
-1. Clone the repository
+Run each flavor:
 ```bash
-git clone https://github.com/yourusername/flutter-starterkit.git
-cd flutter-starterkit
+flutter run -t lib/main_dev.dart
+flutter run -t lib/main_stg.dart
+flutter run -t lib/main_prod.dart
 ```
-2. Install dependencies
-```bash
-flutter pub get
-```
-3. Firebase Setup
-- Create a Firebase project and register your Android/iOS app
 
-- Download google-services.json (Android) and/or GoogleService-Info.plist (iOS)
-
-- Place them in the correct platform folders
-
-- Run:
-```bash
-flutterfire configure
-```
-4. Run native splash generator
-```bash
-flutter pub run flutter_native_splash:create
-```
-5. Run the app
-```bash
-flutter run
-```
 ---
 
-## 🧬 State Management with Riverpod
-- Global providers declared in presentation/viewmodels/
-
-- Use StateNotifierProvider for business logic (MVVM)
-
-- Fully testable, decoupled, and scalable
-
-## 🔌 Dependency Injection
-Using GetIt:
-```bash
-final sl = GetIt.instance;
-
-Future<void> setupLocator() async {
-  sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl());
-  sl.registerLazySingleton(() => GetCurrentUser(sl()));
-}
-```
-
-## 📦 Key Packages Used
-| Feature                    | Package                        |
-|---------------------------|--------------------------------|
-| State Management          | `flutter_riverpod`             |
-| Networking                | `dio`, `retrofit`              |
-| Firebase Integration      | `firebase_core`, `firebase_auth`, `firebase_remote_config`, `firebase_messaging` |
-| Local Storage             | `hive`, `shared_preferences`   |
-| Dependency Injection      | `get_it`                       |
-| Splash Screen             | `flutter_native_splash`        |
-| Theme/Fonts               | `google_fonts`                 |
-| Animation Loading         | `lottie`, `shimmer`            |
-| Cached Images             | `cached_network_image`         |
-| Routing                   | `go_router`                    |
-| Environment Config        | `flutter_dotenv`               |
-
-## 📄 License
-This project is licensed under the MIT License.
-
-## 🙌 Contributions
-Feel free to fork, customize, and contribute to this template. Pull requests are welcome!
+## 🚀 Quick Start
+1. Clone & install dependencies
+   ```bash
+   git clone https://github.com/yourusername/flutter-starterkit.git
+   cd flutter-starterkit
+   flutter pub get
+   ```
+2. Prepare the `.env` files as above.
+3. (Optional) Configure Firebase
+   ```bash
+   flutterfire configure
+   ```
+   Copy `google-services.json` and `GoogleService-Info.plist` into the respective platform folders.
+4. Generate assets or code
+   ```bash
+   dart run build_runner build --delete-conflicting-outputs
+   flutter pub run flutter_native_splash:create
+   ```
+5. Run the desired environment (example: dev)
+   ```bash
+   flutter run -t lib/main_dev.dart
+   ```
 
 ---
+
+## 📚 Using the Key Capabilities
+- **Riverpod global state**: see `lib/app/providers/app_providers.dart` & `features/**/presentation/providers`. Build StateNotifier-based view models and inject dependencies via provider overrides.
+- **GoRouter & RouteGuard**: defined under `lib/app/routes`. `RouteGuard` orchestrates onboarding/login redirects and exposes `navigateWithGuard` / `pushWithGuard` helpers.
+- **Design System**: Atomic components live in `lib/shared/design_system`. Use `AppTheme`, `app_colors.dart`, atoms/buttons, molecules/forms, organisms/bottom_nav, etc.
+- **Localization**: `EasyLocalization` wraps the entire app inside `AppBootstrap`. Define keys in `assets/translations` and call `.tr()`.
+- **Security & storage**: Secure tokens with `SecureStorageService`, persist user cache via `HiveService`, keep theme/locale in `PreferencesService`, enable biometrics via `BiometricAuthMixin`.
+
+---
+
+## 🧰 Tooling & Scripts
+| Task | Command / Location | Notes |
+|------|--------------------|-------|
+| Auto format + analyze on commit | `.git/hooks/pre-commit` | Formats staged Dart files, runs `flutter analyze` by directory, warns on TODO/print. |
+| Manual lint | `flutter analyze` | Uses `analysis_options.yaml` (single quotes, avoid print, require trailing commas, ...). |
+| Tests + coverage | `./test_coverage.sh` | Runs unit/widget + integration tests, formats coverage (HTML) and opens report. |
+| Code generation | `dart run build_runner build` | Add `--delete-conflicting-outputs` for clean rebuilds. |
+
+---
+
+## 🧪 Testing Strategy
+- `test/unit/`: example `auth_view_model_test.dart` + onboarding module; extend with mocktail.
+- `test/widget/`: add concrete UI scenarios (currently empty samples).
+- `test/integration/`: relies on the `integration_test` package.
+- `golden/`: snapshot-driven visual checks.
+
+Quick commands:
+```bash
+flutter test
+flutter test integration_test
+```
+
+---
+
+## 📦 Featured Packages
+| Category | Packages |
+|----------|----------|
+| State management | `flutter_riverpod`, `riverpod_generator` |
+| Networking | `dio`, `retrofit`, `json_serializable`, `connectivity_plus` |
+| Storage & cache | `hive`, `hive_flutter`, `shared_preferences`, `flutter_secure_storage` |
+| Firebase & backend | `firebase_core`, `firebase_remote_config`, `firebase_messaging`, `firebase_analytics`, `firebase_performance` |
+| UI/UX | `google_fonts`, `lottie`, `shimmer`, `cached_network_image`, `auto_size_text` |
+| Navigation & env | `go_router`, `flutter_dotenv`, `app_links`, `workmanager`, `upgrader` |
+| Security & device | `local_auth`, `permission_handler`, `device_info_plus`, `package_info_plus` |
+
+---
+
+## 📝 License & Contributions
+- License: **MIT**
+- PRs/issues are welcome. Please keep the pre-commit hook enabled and update README/docs when adding new features.
+
+---
+
 vanhuy-30
