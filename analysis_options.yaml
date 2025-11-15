@@ -31,7 +31,6 @@ linter:
     
     # Flutter Rules
     cancel_subscriptions: true
-    avoid_dynamic_calls: true
     close_sinks: true
     empty_statements: true
     hash_and_equals: true
