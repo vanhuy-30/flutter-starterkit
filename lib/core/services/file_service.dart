@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:isolate';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:dio/dio.dart';
@@ -12,6 +13,10 @@ class FileService {
 
   final Dio _dio = Dio();
   bool _isInitialized = false;
+
+  Future<T> _runFileOperation<T>(T Function() operation) {
+    return Isolate.run(operation);
+  }
 
   // Initialize service
   Future<void> initialize() async {
@@ -30,22 +35,22 @@ class FileService {
 
   // Get temporary directory
   Future<Directory> getTemporaryDirectory() async {
-    return await path_provider.getTemporaryDirectory();
+    return path_provider.getTemporaryDirectory();
   }
 
   // Get application documents directory
   Future<Directory> getApplicationDocumentsDirectory() async {
-    return await path_provider.getApplicationDocumentsDirectory();
+    return path_provider.getApplicationDocumentsDirectory();
   }
 
   // Get application support directory
   Future<Directory> getApplicationSupportDirectory() async {
-    return await path_provider.getApplicationSupportDirectory();
+    return path_provider.getApplicationSupportDirectory();
   }
 
   // Get external storage directory
   Future<Directory?> getExternalStorageDirectory() async {
-    return await path_provider.getExternalStorageDirectory();
+    return path_provider.getExternalStorageDirectory();
   }
 
   // Download file
@@ -63,15 +68,22 @@ class FileService {
       }
 
       // Get download directory
-      final downloadDir = directory != null
-          ? Directory(directory)
-          : await getApplicationDocumentsDirectory();
-      if (!await downloadDir.exists()) {
-        await downloadDir.create(recursive: true);
+      final targetDirectoryPath =
+          directory ?? (await getApplicationDocumentsDirectory()).path;
+
+      final directoryExists = await _runFileOperation(
+        () => Directory(targetDirectoryPath).existsSync(),
+      );
+
+      if (!directoryExists) {
+        await _runFileOperation(() {
+          Directory(targetDirectoryPath).createSync(recursive: true);
+          return true;
+        });
       }
 
       // Create file path
-      final filePath = path.join(downloadDir.path, fileName);
+      final filePath = path.join(targetDirectoryPath, fileName);
 
       // Download file
       await _dio.download(
@@ -95,8 +107,10 @@ class FileService {
     void Function(int, int)? onProgress,
   }) async {
     try {
-      final file = File(filePath);
-      if (!await file.exists()) {
+      final fileExists = await _runFileOperation(
+        () => File(filePath).existsSync(),
+      );
+      if (!fileExists) {
         throw Exception('File not found');
       }
 
@@ -123,10 +137,13 @@ class FileService {
   // Delete file
   Future<void> deleteFile(String filePath) async {
     try {
-      final file = File(filePath);
-      if (await file.exists()) {
-        await file.delete();
-      }
+      await _runFileOperation(() {
+        final file = File(filePath);
+        if (file.existsSync()) {
+          file.deleteSync();
+        }
+        return true;
+      });
     } catch (e) {
       debugPrint('Error deleting file: $e');
       rethrow;
@@ -136,11 +153,13 @@ class FileService {
   // Get file size
   Future<int> getFileSize(String filePath) async {
     try {
-      final file = File(filePath);
-      if (await file.exists()) {
-        return await file.length();
-      }
-      return 0;
+      return await _runFileOperation(() {
+        final file = File(filePath);
+        if (file.existsSync()) {
+          return file.lengthSync();
+        }
+        return 0;
+      });
     } catch (e) {
       debugPrint('Error getting file size: $e');
       return 0;
@@ -160,8 +179,7 @@ class FileService {
   // Check if file exists
   Future<bool> fileExists(String filePath) async {
     try {
-      final file = File(filePath);
-      return await file.exists();
+      return _runFileOperation(() => File(filePath).existsSync());
     } catch (e) {
       debugPrint('Error checking file existence: $e');
       return false;
@@ -171,10 +189,13 @@ class FileService {
   // Create directory
   Future<void> createDirectory(String directoryPath) async {
     try {
-      final directory = Directory(directoryPath);
-      if (!await directory.exists()) {
-        await directory.create(recursive: true);
-      }
+      await _runFileOperation(() {
+        final directory = Directory(directoryPath);
+        if (!directory.existsSync()) {
+          directory.createSync(recursive: true);
+        }
+        return true;
+      });
     } catch (e) {
       debugPrint('Error creating directory: $e');
       rethrow;
@@ -184,14 +205,16 @@ class FileService {
   // List directory contents
   Future<List<FileSystemEntity>> listDirectory(String directoryPath) async {
     try {
-      final directory = Directory(directoryPath);
-      if (await directory.exists()) {
-        return await directory.list().toList();
-      }
-      return [];
+      return await _runFileOperation(() {
+        final directory = Directory(directoryPath);
+        if (directory.existsSync()) {
+          return directory.listSync();
+        }
+        return <FileSystemEntity>[];
+      });
     } catch (e) {
       debugPrint('Error listing directory: $e');
       return [];
     }
   }
-} 
+}

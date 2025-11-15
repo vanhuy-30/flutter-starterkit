@@ -96,8 +96,9 @@ class RetryService {
     return RetryPolicy(
       maxRetries: maxRetries ?? 3,
       retryDelay: retryDelay ?? const Duration(seconds: 1),
-      retryStatusCodes: retryStatusCodes ?? const [408, 429, 500, 502, 503, 504],
+      retryStatusCodes:
+          retryStatusCodes ?? const [408, 429, 500, 502, 503, 504],
       shouldRetry: shouldRetry,
     );
   }
-} 
+}

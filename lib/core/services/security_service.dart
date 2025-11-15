@@ -55,7 +55,7 @@ class SecurityService {
   }
 
   Future<String?> getAuthToken() async {
-    return await getSecureData('auth_token');
+    return getSecureData('auth_token');
   }
 
   Future<void> deleteAuthToken() async {

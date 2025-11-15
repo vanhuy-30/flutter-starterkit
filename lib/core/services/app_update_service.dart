@@ -11,7 +11,7 @@ class AppUpdateService {
 
   static const String _lastCheckKey = 'last_update_check';
   static const String _skipVersionKey = 'skip_version';
-  
+
   // Default configuration
   static const Duration _checkInterval = Duration(hours: 24);
 
@@ -31,11 +31,11 @@ class AppUpdateService {
     try {
       final upgrader = Upgrader();
       await upgrader.initialize();
-      
+
       // Save the last check time
       final prefs = await SharedPreferences.getInstance();
       await prefs.setInt(_lastCheckKey, DateTime.now().millisecondsSinceEpoch);
-      
+
       return upgrader.isUpdateAvailable();
     } catch (e) {
       debugPrint('Error checking for updates: $e');
@@ -48,13 +48,13 @@ class AppUpdateService {
     final prefs = await SharedPreferences.getInstance();
     final lastCheck = prefs.getInt(_lastCheckKey) ?? 0;
     final now = DateTime.now().millisecondsSinceEpoch;
-    
+
     // Check if the time interval has passed
     if (now - lastCheck < _checkInterval.inMilliseconds) {
       return false;
     }
-    
-    return await checkForUpdates();
+
+    return checkForUpdates();
   }
 
   /// Widget wrapper with UpgradeAlert
@@ -63,7 +63,7 @@ class AppUpdateService {
     AppUpdateConfig? config,
   }) {
     final upgradeConfig = config ?? AppUpdateConfig.defaultConfig();
-    
+
     return UpgradeAlert(
       upgrader: _buildUpgrader(upgradeConfig),
       dialogStyle: upgradeConfig.dialogStyle,
@@ -80,10 +80,10 @@ class AppUpdateService {
     EdgeInsets? margin,
   }) {
     final upgradeConfig = config ?? AppUpdateConfig.defaultConfig();
-    
+
     return UpgradeCard(
       upgrader: _buildUpgrader(upgradeConfig),
-      margin: margin ?? const EdgeInsets.all(16.0),
+      margin: margin ?? const EdgeInsets.all(16),
       showIgnore: upgradeConfig.showIgnoreButton,
       showLater: upgradeConfig.showLaterButton,
       showReleaseNotes: upgradeConfig.showReleaseNotes,
@@ -167,7 +167,7 @@ class AppUpdateService {
   Future<void> openStore() async {
     final upgrader = Upgrader();
     await upgrader.initialize();
-    upgrader.sendUserToAppStore();
+    await upgrader.sendUserToAppStore();
   }
 
   /// Reset the saved settings

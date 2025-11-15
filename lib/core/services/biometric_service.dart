@@ -95,4 +95,4 @@ class BiometricService {
       return false;
     }
   }
-} 
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/core/routes/routes.dart';
+import 'package:flutter_starter_kit/app/routes/route_paths.dart';
+import 'package:flutter_starter_kit/app/routes/route_guard.dart';
 import 'package:go_router/go_router.dart';
 
 class NavigationService {
@@ -15,6 +16,15 @@ class NavigationService {
 
   void go(BuildContext context, String route, {Object? extra}) {
     context.go(route, extra: extra);
+  }
+
+  // Navigation with Route Guard
+  void pushWithGuard(BuildContext context, String route, {Object? extra}) {
+    RouteGuard.instance.pushWithGuard(context, route, extra: extra);
+  }
+
+  void goWithGuard(BuildContext context, String route, {Object? extra}) {
+    RouteGuard.instance.navigateWithGuard(context, route, extra: extra);
   }
 
   void pop(BuildContext context, [dynamic result]) {
@@ -34,6 +44,8 @@ class NavigationService {
   void toForgotPassword(BuildContext context) =>
       push(context, Routes.forgotPassword);
   void toHome(BuildContext context) => go(context, Routes.home);
+  void toSearch(BuildContext context) => go(context, Routes.search);
+  void toSettings(BuildContext context) => go(context, Routes.settings);
 
   // Navigation with parameters
   void pushWithParams(

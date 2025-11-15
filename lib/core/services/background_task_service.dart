@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 class BackgroundTaskService {
-  static final BackgroundTaskService _instance = BackgroundTaskService._internal();
+  static final BackgroundTaskService _instance =
+      BackgroundTaskService._internal();
   factory BackgroundTaskService() => _instance;
   BackgroundTaskService._internal();
 
@@ -148,4 +149,4 @@ Future<void> _handleNotificationTask(Map<String, dynamic>? inputData) async {
   debugPrint('Sending notification...');
   await Future.delayed(const Duration(seconds: 5));
   debugPrint('Notification sent');
-} 
+}

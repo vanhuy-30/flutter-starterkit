@@ -9,7 +9,8 @@ class RateLimitException implements Exception {
   RateLimitException(this.message, this.retryAfter);
 
   @override
-  String toString() => 'RateLimitException: $message (Retry after: ${retryAfter.inSeconds} seconds)';
+  String toString() =>
+      'RateLimitException: $message (Retry after: ${retryAfter.inSeconds} seconds)';
 }
 
 class RateLimiterService {
@@ -149,4 +150,4 @@ class _RateLimiter {
       _windowStart = null;
     }
   }
-} 
+}

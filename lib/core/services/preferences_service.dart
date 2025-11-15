@@ -1,6 +1,6 @@
 // lib/services/preferences_service.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/core/constants.dart';
+import 'package:flutter_starter_kit/core/configs/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesService {
@@ -33,10 +33,28 @@ class PreferencesService {
   }
 
   Locale? getLocale() {
-    String? languageCode = _preferences?.getString(AppConstants.localeKey);
+    final languageCode = _preferences?.getString(AppConstants.localeKey);
     if (languageCode != null) {
       return Locale(languageCode);
     }
     return null;
+  }
+
+  // Onboarding management
+  Future<void> setOnboardingCompleted(bool isCompleted) async {
+    await _preferences?.setBool(AppConstants.onboardingKey, isCompleted);
+  }
+
+  bool getOnboardingCompleted() {
+    return _preferences?.getBool(AppConstants.onboardingKey) ?? false;
+  }
+
+  // Generic string storage
+  Future<void> setString(String key, String value) async {
+    await _preferences?.setString(key, value);
+  }
+
+  String? getString(String key) {
+    return _preferences?.getString(key);
   }
 }
