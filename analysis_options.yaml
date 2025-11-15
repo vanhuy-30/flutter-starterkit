@@ -31,7 +31,6 @@ linter:
     
     # Flutter Rules
     cancel_subscriptions: true
-    require_trailing_commas: true
     avoid_dynamic_calls: true
     close_sinks: true
     empty_statements: true
