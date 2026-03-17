@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/core/di/dependency_injection.dart';
-import 'package:flutter_starter_kit/core/network/api_service.dart';
-import 'package:flutter_starter_kit/core/services/secure_storage_service.dart';
+import 'package:flutter_starter_kit/app/providers/app_providers.dart';
 import 'package:flutter_starter_kit/features/auth/data/models/user_model.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/auth_state.dart';
 import 'package:flutter_starter_kit/features/auth/domain/repositories/auth_repository_impl.dart';
@@ -9,15 +7,6 @@ import 'package:flutter_starter_kit/features/auth/domain/usecases/login_usecase.
 import 'package:flutter_starter_kit/features/auth/presentation/providers/auth_notifier.dart';
 
 /// Auth feature providers
-
-// Core service providers
-final secureStorageServiceProvider = Provider<SecureStorageService>((ref) {
-  return getIt<SecureStorageService>();
-});
-
-final apiServiceProvider = Provider<ApiService>((ref) {
-  return getIt<ApiService>();
-});
 
 // Repository providers
 final authRepositoryProvider = Provider<AuthRepositoryImpl>((ref) {
