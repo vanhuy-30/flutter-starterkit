@@ -5,7 +5,7 @@ Production-ready Flutter starter focused on Clean Architecture, Riverpod, Fireba
 ---
 
 ## 🌟 Highlights
-- Clean Architecture + MVVM with Riverpod & GetIt.
+- Clean Architecture + MVVM with Riverpod.
 - GoRouter navigation with custom Route Guard + deep link support.
 - Atomic design system (atoms → organisms), theme switching, design tokens.
 - Easy Localization, onboarding, biometrics, Hive/SharedPreferences/SecureStorage caching.
@@ -16,7 +16,7 @@ Production-ready Flutter starter focused on Clean Architecture, Riverpod, Fireba
 
 ## 🧱 Architecture & Layers
 - **app/**: bootstrap (`AppBootstrap`), lifecycle, global Riverpod providers, router/guards.
-- **core/**: env config (`Env`, `AppConfig`), networking (Dio + interceptors), error handling, DI (GetIt), services (analytics, push, remote config, storage, security, retry, background tasks, ...), utils.
+- **core/**: env config (`Env`, `AppConfig`), networking (Dio + interceptors), error handling, DI (Riverpod), services (analytics, push, remote config, storage, security, retry, background tasks, ...), utils.
 - **features/**: domain modules (auth, onboarding, home, settings, search) containing data/domain/presentation and Riverpod view models.
 - **shared/**: Atomic design system, mixins (cache, biometrics, update), splash/not-found pages, shared view models.
 - **entrypoints**: `main.dart`, `main_dev.dart`, `main_stg.dart`, `main_prod.dart` select the matching `.env` and run the bootstrap flow.
@@ -58,7 +58,7 @@ test/
 - ✅ File handling: pick/process images & files, permission & MIME helpers.
 - ✅ Performance tools: monitoring, code-quality hooks, background tasks, lifecycle manager.
 - ✅ UI/UX: dynamic theme, localization, splash, Lottie loaders, shimmer, cached images, auto-size text, OTP widgets.
-- ✅ Tooling: multi-env `.env`, GetIt, reusable UI utilities, analytics/error/docs services, notification handling.
+- ✅ Tooling: multi-env `.env`, Riverpod for DI, reusable UI utilities, analytics/error/docs services, notification handling.
 
 ---
 
@@ -115,15 +115,29 @@ flutter run -t lib/main_prod.dart
 - Works seamlessly with design system widgets and GoRouter navigation.
 
 ## 🔌 Dependency Injection
-Using GetIt via `setupDependencyInjection()`:
+Using Riverpod providers for dependency injection. Core providers are defined in `lib/app/providers/core_providers.dart`:
 ```dart
-final sl = GetIt.instance;
+// Core service providers
+final dioClientProvider = Provider<Dio>((ref) {
+  final dio = Dio(BaseOptions(baseUrl: appConfig.baseUrl));
+  dio.interceptors.addAll([AuthInterceptor(dio), LoggingInterceptor()]);
+  return dio;
+});
 
-Future<void> setupDependencyInjection() async {
-  sl.registerLazySingleton<ApiService>(() => ApiService());
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
-  sl.registerLazySingleton(() => LoginUseCase(sl()));
-}
+final apiServiceProvider = Provider<ApiService>((ref) {
+  final dio = ref.watch(dioClientProvider);
+  return ApiService(dio, baseUrl: appConfig.baseUrl);
+});
+
+final secureStorageServiceProvider = Provider<SecureStorageService>((ref) {
+  return SecureStorageService();
+});
+
+// Feature providers can use core providers via ref.watch()
+final authRepositoryProvider = Provider<AuthRepositoryImpl>((ref) {
+  final apiService = ref.watch(apiServiceProvider);
+  return AuthRepositoryImpl(apiService);
+});
 ```
 
 ---
@@ -134,7 +148,7 @@ Future<void> setupDependencyInjection() async {
 | State management | `flutter_riverpod`, `riverpod_generator` |
 | Networking | `dio`, `retrofit`, `json_serializable`, `connectivity_plus` |
 | Storage & cache | `hive`, `hive_flutter`, `shared_preferences`, `flutter_secure_storage` |
-| Dependency Injection | `get_it` |
+| Dependency Injection | `flutter_riverpod` |
 | Localization | `easy_localization` |
 | UI/UX | `google_fonts`, `shimmer`, `cached_network_image`, `flutter_svg`, `auto_size_text`, `calendar_date_picker2` |
 | Animation | `lottie` |

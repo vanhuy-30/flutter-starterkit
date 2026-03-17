@@ -1,11 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/core/services/hive_service.dart';
-import 'package:flutter_starter_kit/core/services/preferences_service.dart';
-import 'package:flutter_starter_kit/core/services/locale_service.dart';
 import 'package:flutter_starter_kit/core/services/biometric_service.dart';
+import 'package:flutter_starter_kit/core/services/hive_service.dart';
+import 'package:flutter_starter_kit/core/services/locale_service.dart';
+import 'package:flutter_starter_kit/core/services/preferences_service.dart';
 
 /// Core services providers
-/// Các service này cần được khởi tạo trong main() trước khi sử dụng
 
 final hiveServiceProvider = Provider<HiveService>((ref) {
   throw UnimplementedError('HiveService must be initialized in main()');

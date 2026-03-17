@@ -6,15 +6,11 @@ import 'package:flutter_starter_kit/shared/design_system/theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_starter_kit/features/settings/presentation/providers/settings_providers.dart';
 import 'package:flutter_starter_kit/app/providers/app_providers.dart';
-import 'package:flutter_starter_kit/core/di/dependency_injection.dart';
 import 'package:flutter_starter_kit/shared/design_system/widgets/app_lifecycle_manager.dart';
 
 class AppInitializer {
   static Future<void> initialize() async {
     WidgetsFlutterBinding.ensureInitialized();
-
-    // Initialize dependency injection
-    setupDependencyInjection();
 
     // Set preferred orientations
     await SystemChrome.setPreferredOrientations([
