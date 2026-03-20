@@ -370,7 +370,7 @@ class AppSearchField extends StatefulWidget {
   const AppSearchField({
     super.key,
     this.label,
-    this.hintText = 'Tìm kiếm...',
+    this.hintText = 'Search...',
     required this.controller,
     this.onSearch,
     this.onClear,

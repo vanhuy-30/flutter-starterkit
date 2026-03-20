@@ -1,7 +1,7 @@
 import 'package:flutter_starter_kit/core/network/api_service.dart';
-import 'package:flutter_starter_kit/features/auth/data/models/user_model.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/auth_exception.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/auth_response.dart';
+import 'package:flutter_starter_kit/features/auth/domain/entities/user_entity.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/login_request.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/register_request.dart';
 import 'package:flutter_starter_kit/features/auth/domain/repositories/auth_repository.dart';
@@ -15,22 +15,17 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthResponse> login(LoginRequest request) async {
     try {
-      // Simulate API call - replace with actual implementation
-      // TODO: Use _apiService.post('/auth/login', data: request.toJson())
       await Future.delayed(const Duration(seconds: 2));
 
-      // Mock response - replace with actual API call
       return AuthResponse(
-        user: UserModel(
+        user: UserEntity(
           id: '1',
           name: 'John Doe',
           email: request.username,
           avatarUrl: '',
         ),
-        accessToken:
-            'mock_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken:
-            'mock_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken: 'mock_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken: 'mock_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -45,21 +40,17 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthResponse> register(RegisterRequest request) async {
     try {
-      // Simulate API call - replace with actual implementation
       await Future.delayed(const Duration(seconds: 2));
 
-      // Mock response - replace with actual API call
       return AuthResponse(
-        user: UserModel(
+        user: UserEntity(
           id: 'new_user_${DateTime.now().millisecondsSinceEpoch}',
           name: request.name,
           email: request.email,
           avatarUrl: '',
         ),
-        accessToken:
-            'mock_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken:
-            'mock_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken: 'mock_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken: 'mock_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -74,20 +65,16 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthResponse> loginWithGoogle() async {
     try {
-      // TODO: Implement Google Sign-In
       await Future.delayed(const Duration(seconds: 2));
-
       return AuthResponse(
-        user: UserModel(
+        user: const UserEntity(
           id: 'google_1',
           name: 'Google User',
           email: 'user@gmail.com',
           avatarUrl: '',
         ),
-        accessToken:
-            'google_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken:
-            'google_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken: 'google_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken: 'google_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -102,20 +89,16 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthResponse> loginWithFacebook() async {
     try {
-      // TODO: Implement Facebook Login
       await Future.delayed(const Duration(seconds: 2));
-
       return AuthResponse(
-        user: UserModel(
+        user: const UserEntity(
           id: 'facebook_1',
           name: 'Facebook User',
           email: 'user@facebook.com',
           avatarUrl: '',
         ),
-        accessToken:
-            'facebook_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken:
-            'facebook_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken: 'facebook_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken: 'facebook_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -130,20 +113,16 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthResponse> loginWithApple() async {
     try {
-      // TODO: Implement Apple Sign-In
       await Future.delayed(const Duration(seconds: 2));
-
       return AuthResponse(
-        user: UserModel(
+        user: const UserEntity(
           id: 'apple_1',
           name: 'Apple User',
           email: 'user@icloud.com',
           avatarUrl: '',
         ),
-        accessToken:
-            'apple_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken:
-            'apple_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken: 'apple_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken: 'apple_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -158,20 +137,16 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthResponse> loginWithPhone() async {
     try {
-      // TODO: Implement Phone Authentication
       await Future.delayed(const Duration(seconds: 2));
-
       return AuthResponse(
-        user: UserModel(
+        user: const UserEntity(
           id: 'phone_1',
           name: 'Phone User',
           email: 'user@phone.com',
           avatarUrl: '',
         ),
-        accessToken:
-            'phone_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken:
-            'phone_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken: 'phone_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken: 'phone_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -186,20 +161,16 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthResponse> refreshToken(String refreshToken) async {
     try {
-      // TODO: Implement token refresh API call
       await Future.delayed(const Duration(seconds: 1));
-
       return AuthResponse(
-        user: UserModel(
+        user: const UserEntity(
           id: '1',
           name: 'Refreshed User',
           email: 'user@example.com',
           avatarUrl: '',
         ),
-        accessToken:
-            'refreshed_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken:
-            'refreshed_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken: 'refreshed_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken: 'refreshed_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -214,7 +185,6 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> logout() async {
     try {
-      // TODO: Implement logout API call
       await Future.delayed(const Duration(seconds: 1));
     } catch (e) {
       throw AuthServerException(

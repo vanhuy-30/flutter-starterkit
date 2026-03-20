@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_starter_kit/app/routes/route_paths.dart';
 import 'package:flutter_starter_kit/core/services/preferences_service.dart';
-import 'package:flutter_starter_kit/features/auth/presentation/providers/auth_providers.dart';
+import 'package:flutter_starter_kit/features/auth/presentation/state/auth_providers.dart';
 
 /// Guard result types
 enum GuardResult {

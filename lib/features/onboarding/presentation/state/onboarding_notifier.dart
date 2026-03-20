@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/features/onboarding/domain/models/onboarding_state.dart';
 import 'package:flutter_starter_kit/features/onboarding/domain/errors/onboarding_errors.dart';
+import 'package:flutter_starter_kit/features/onboarding/domain/models/onboarding_state.dart';
 import 'package:flutter_starter_kit/features/onboarding/domain/usecases/complete_onboarding_usecase.dart';
 import 'package:flutter_starter_kit/features/onboarding/domain/usecases/get_onboarding_status_usecase.dart';
 import 'package:flutter_starter_kit/features/onboarding/domain/usecases/save_interests_usecase.dart';
@@ -31,7 +31,7 @@ class OnboardingNotifier extends StateNotifier<OnboardingState> {
         error: e is OnboardingError
             ? e
             : OnboardingLoadError(
-                message: 'Lỗi không xác định',
+                message: 'Unknown error',
                 details: e.toString(),
               ),
         isLoading: false,
@@ -89,7 +89,7 @@ class OnboardingNotifier extends StateNotifier<OnboardingState> {
         error: e is OnboardingError
             ? e
             : OnboardingSaveError(
-                message: 'Không thể hoàn thành onboarding',
+                message: 'Unable to complete onboarding',
                 details: e.toString(),
               ),
         isCompleting: false,

@@ -49,17 +49,17 @@ extension OnboardingErrorExtension on OnboardingError {
   String get displayMessage {
     if (this is OnboardingSaveError) {
       final error = this as OnboardingSaveError;
-      return 'Không thể lưu trạng thái: ${error.message}';
+      return 'Unable to save state: ${error.message}';
     } else if (this is OnboardingLoadError) {
       final error = this as OnboardingLoadError;
-      return 'Không thể tải trạng thái: ${error.message}';
+      return 'Unable to load state: ${error.message}';
     } else if (this is InterestsSaveError) {
       final error = this as InterestsSaveError;
-      return 'Không thể lưu sở thích: ${error.message}';
+      return 'Unable to save preferences: ${error.message}';
     } else if (this is OnboardingValidationError) {
       final error = this as OnboardingValidationError;
-      return 'Lỗi xác thực: ${error.message}';
+      return 'Authentication error: ${error.message}';
     }
-    return 'Lỗi không xác định';
+    return 'Unknown error';
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_starter_kit/app/providers/app_providers.dart';
 import 'package:flutter_starter_kit/core/services/hive_service.dart';
 import 'package:flutter_starter_kit/features/auth/data/models/user_model.dart';
-import 'package:flutter_starter_kit/app/providers/app_providers.dart';
 
 class UserState {
   final List<UserModel> users;
@@ -84,8 +84,6 @@ class UserNotifier extends StateNotifier<UserState> {
   Future<void> loadUsers() async {
     state = state.copyWith(isLoading: true, error: null);
     try {
-      // Assuming there's a method to get all users
-      // You might need to implement this in HiveService
       state = state.copyWith(isLoading: false);
     } catch (e) {
       state = state.copyWith(
@@ -96,7 +94,6 @@ class UserNotifier extends StateNotifier<UserState> {
   }
 }
 
-// Provider cho UserNotifier
 final userNotifierProvider =
     StateNotifierProvider<UserNotifier, UserState>((ref) {
   final hiveService = ref.watch(hiveServiceProvider);

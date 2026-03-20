@@ -7,6 +7,7 @@ import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 import 'package:flutter_starter_kit/features/settings/presentation/widgets/settings_avatar.dart';
 import 'package:flutter_starter_kit/features/settings/presentation/widgets/language_dialog.dart';
 import 'package:flutter_starter_kit/features/settings/presentation/widgets/theme_dialog.dart';
+import 'package:flutter_starter_kit/features/settings/presentation/state/settings_providers.dart';
 import 'package:flutter_starter_kit/app/providers/app_providers.dart';
 import 'package:flutter_starter_kit/shared/design_system/molecules/app_dialog.dart';
 import 'package:flutter_starter_kit/app/routes/route_paths.dart';
@@ -92,7 +93,7 @@ class SettingsPage extends ConsumerWidget {
               confirmText: 'logout'.tr(),
               cancelText: 'cancel'.tr(),
               onConfirm: () async {
-                await ref.read(authNotifierProvider.notifier).logout();
+                await ref.read(settingsNotifierProvider.notifier).logout();
                 if (context.mounted) {
                   context.go(Routes.login);
                 }

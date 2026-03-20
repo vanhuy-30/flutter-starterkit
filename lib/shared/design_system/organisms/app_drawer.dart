@@ -145,22 +145,22 @@ class AppMainDrawer extends StatelessWidget {
       onLogoutTap: onLogoutTap,
       menuItems: [
         AppDrawerItem(
-          title: 'Trang chủ',
+          title: 'Home',
           icon: AppIcons.home,
           onTap: onHomeTap,
         ),
         AppDrawerItem(
-          title: 'Tìm kiếm',
+          title: 'Search',
           icon: AppIcons.search,
           onTap: onSearchTap,
         ),
         AppDrawerItem(
-          title: 'Yêu thích',
+          title: 'Favorites',
           icon: AppIcons.favorite,
           onTap: onFavoritesTap,
         ),
         AppDrawerItem(
-          title: 'Thông báo',
+          title: 'Notifications',
           icon: AppIcons.notifications,
           badgeCount: notificationCount,
           onTap: () {},
@@ -168,12 +168,12 @@ class AppMainDrawer extends StatelessWidget {
       ],
       bottomItems: [
         AppDrawerItem(
-          title: 'Cài đặt',
+          title: 'Settings',
           icon: AppIcons.settings,
           onTap: onSettingsTap,
         ),
         AppDrawerItem(
-          title: 'Trợ giúp',
+          title: 'Help',
           icon: AppIcons.help,
           onTap: onHelpTap,
         ),
@@ -219,34 +219,34 @@ class AppSettingsDrawer extends StatelessWidget {
       onLogoutTap: onLogoutTap,
       menuItems: [
         AppDrawerItem(
-          title: 'Tài khoản',
-          subtitle: 'Quản lý thông tin cá nhân',
+          title: 'Account',
+          subtitle: 'Manage personal information',
           icon: AppIcons.profile,
           onTap: onAccountTap,
         ),
         AppDrawerItem(
-          title: 'Quyền riêng tư',
-          subtitle: 'Cài đặt quyền riêng tư',
+          title: 'Privacy',
+          subtitle: 'Privacy settings',
           icon: AppIcons.privacy,
           onTap: onPrivacyTap,
         ),
         AppDrawerItem(
-          title: 'Bảo mật',
-          subtitle: 'Mật khẩu và xác thực',
+          title: 'Security',
+          subtitle: 'Password and authentication',
           icon: AppIcons.security,
           onTap: onSecurityTap,
         ),
         AppDrawerItem(
-          title: 'Thông báo',
-          subtitle: 'Cài đặt thông báo',
+          title: 'Notifications',
+          subtitle: 'Notification settings',
           icon: AppIcons.notifications,
           onTap: onNotificationsTap,
         ),
       ],
       bottomItems: [
         AppDrawerItem(
-          title: 'Về ứng dụng',
-          subtitle: 'Phiên bản và thông tin',
+          title: 'About the app',
+          subtitle: 'Version and information',
           icon: AppIcons.info,
           onTap: onAboutTap,
         ),

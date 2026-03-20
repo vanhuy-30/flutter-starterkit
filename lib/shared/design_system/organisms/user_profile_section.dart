@@ -64,7 +64,7 @@ class UserProfileSection extends StatelessWidget {
           leading: _buildAvatar(),
           trailing: showEditButton
               ? AppButton(
-                  text: 'Chỉnh sửa',
+                  text: 'Edit',
                   onPressed: onEditProfile ?? () {},
                   height: 36,
                 )
@@ -75,7 +75,7 @@ class UserProfileSection extends StatelessWidget {
         if (bio != null) ...[
           const SizedBox(height: 16),
           AppInfoCard(
-            title: 'Giới thiệu',
+            title: 'About',
             subtitle: bio,
             variant: AppInfoCardVariant.defaultCard,
           ),
@@ -86,7 +86,7 @@ class UserProfileSection extends StatelessWidget {
           Column(
             children: [
               const AppInfoCard(
-                title: 'Thông tin cá nhân',
+                title: 'Personal information',
                 variant: AppInfoCardVariant.defaultCard,
               ),
               ...profileItems.map(_buildProfileItem),
@@ -99,7 +99,7 @@ class UserProfileSection extends StatelessWidget {
           Column(
             children: [
               const AppInfoCard(
-                title: 'Hành động',
+                title: 'Actions',
                 variant: AppInfoCardVariant.defaultCard,
               ),
               ...actions.map(_buildActionItem),
@@ -131,7 +131,7 @@ class UserProfileSection extends StatelessWidget {
         if (bio != null) ...[
           const Divider(height: 1),
           AppListTile(
-            title: 'Giới thiệu',
+            title: 'About',
             subtitle: bio,
             leading: const AppIcon(
               icon: AppIcons.info,
@@ -191,7 +191,7 @@ class UserProfileSection extends StatelessWidget {
         ),
         if (showEditButton)
           AppButton(
-            text: 'Chỉnh sửa',
+            text: 'Edit',
             onPressed: onEditProfile ?? () {},
             height: 36,
           ),
@@ -326,26 +326,26 @@ class UserSettingsProfile extends StatelessWidget {
       style: UserProfileStyle.list,
       profileItems: [
         UserProfileItem(
-          title: 'Tài khoản',
-          value: 'Quản lý thông tin cá nhân',
+          title: 'Account',
+          value: 'Manage personal information',
           icon: AppIcons.profile,
           onTap: onAccountSettings,
         ),
         UserProfileItem(
-          title: 'Quyền riêng tư',
-          value: 'Cài đặt quyền riêng tư',
+          title: 'Privacy',
+          value: 'Privacy settings',
           icon: AppIcons.privacy,
           onTap: onPrivacySettings,
         ),
         UserProfileItem(
-          title: 'Bảo mật',
-          value: 'Mật khẩu và xác thực',
+          title: 'Security',
+          value: 'Password and authentication',
           icon: AppIcons.security,
           onTap: onSecuritySettings,
         ),
         UserProfileItem(
-          title: 'Thông báo',
-          value: 'Cài đặt thông báo',
+          title: 'Notifications',
+          value: 'Notification settings',
           icon: AppIcons.notifications,
           onTap: onNotificationSettings,
         ),

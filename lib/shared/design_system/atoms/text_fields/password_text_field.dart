@@ -29,7 +29,7 @@ class PasswordTextField extends StatefulWidget {
 
   const PasswordTextField({
     super.key,
-    this.hintText = 'Nhập mật khẩu',
+    this.hintText = 'Enter password',
     required this.controller,
     this.validator,
     this.enabled = true,

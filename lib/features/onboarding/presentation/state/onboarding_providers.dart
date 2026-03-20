@@ -6,7 +6,7 @@ import 'package:flutter_starter_kit/features/onboarding/domain/repositories/onbo
 import 'package:flutter_starter_kit/features/onboarding/domain/usecases/complete_onboarding_usecase.dart';
 import 'package:flutter_starter_kit/features/onboarding/domain/usecases/get_onboarding_status_usecase.dart';
 import 'package:flutter_starter_kit/features/onboarding/domain/usecases/save_interests_usecase.dart';
-import 'package:flutter_starter_kit/features/onboarding/presentation/view_model/onboarding_notifier.dart';
+import 'package:flutter_starter_kit/features/onboarding/presentation/state/onboarding_notifier.dart';
 
 /// Onboarding feature providers
 

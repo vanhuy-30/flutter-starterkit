@@ -7,7 +7,7 @@ class MainShellPage extends StatelessWidget {
   const MainShellPage({super.key, required this.navigationShell});
 
   void _onItemTapped(int index) {
-    // Giữ state từng tab khi chuyển
+    // Keep each tab state when switching
     navigationShell.goBranch(index,
         initialLocation: index == navigationShell.currentIndex);
   }

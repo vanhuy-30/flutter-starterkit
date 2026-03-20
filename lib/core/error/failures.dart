@@ -187,7 +187,7 @@ class NotFoundFailure extends Failure {
 /// Failure when there's no internet connection
 class NoInternetFailure extends Failure {
   const NoInternetFailure({
-    super.message = 'Không có kết nối internet',
+    super.message = 'No internet connection',
     super.code,
     dynamic data,
   });
@@ -219,7 +219,7 @@ class ParsingFailure extends Failure {
 /// Failure for unknown errors
 class UnknownFailure extends Failure {
   const UnknownFailure({
-    super.message = 'Lỗi không xác định',
+    super.message = 'Unknown error',
     super.code,
     super.data,
   });

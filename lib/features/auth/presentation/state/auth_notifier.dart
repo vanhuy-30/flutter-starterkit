@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/core/services/secure_storage_service.dart';
-import 'package:flutter_starter_kit/features/auth/data/models/user_model.dart';
+import 'package:flutter_starter_kit/features/auth/domain/entities/user_entity.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/auth_state.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/login_request.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/register_request.dart';
@@ -289,7 +289,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   bool get isAuthenticated => state.isAuthenticated;
 
   /// Get current user
-  UserModel? get currentUser => state.user;
+  UserEntity? get currentUser => state.user;
 
   /// Get access token
   String? get accessToken => state.accessToken;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/login_request.dart';
-import 'package:flutter_starter_kit/features/auth/presentation/providers/auth_providers.dart';
+import 'package:flutter_starter_kit/features/auth/presentation/state/auth_providers.dart';
 
 class LoginState {
   final bool isLoading;
@@ -133,7 +133,6 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 }
 
-// Provider cho LoginNotifier
 final loginNotifierProvider =
     StateNotifierProvider<LoginNotifier, LoginState>((ref) {
   return LoginNotifier(ref);

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/app/routes/app_router.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_starter_kit/features/settings/presentation/providers/settings_providers.dart';
+import 'package:flutter_starter_kit/features/settings/presentation/state/settings_providers.dart';
 import 'package:flutter_starter_kit/app/providers/app_providers.dart';
 import 'package:flutter_starter_kit/shared/design_system/widgets/app_lifecycle_manager.dart';
 

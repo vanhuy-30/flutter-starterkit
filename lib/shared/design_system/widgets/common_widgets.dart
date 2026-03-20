@@ -85,7 +85,7 @@ class AppSectionHeader extends StatelessWidget {
     this.subtitle,
     this.trailing,
     this.onSeeAllPressed,
-    this.seeAllText = 'Xem tất cả',
+    this.seeAllText = 'See all',
     this.showDivider = true,
   });
 
@@ -190,7 +190,7 @@ class AppErrorMessage extends StatelessWidget {
     super.key,
     required this.message,
     this.onRetry,
-    this.retryText = 'Thử lại',
+    this.retryText = 'Retry',
   });
 
   @override
