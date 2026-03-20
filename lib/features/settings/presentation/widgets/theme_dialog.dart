@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/app/providers/app_providers.dart';
-import 'package:flutter_starter_kit/features/settings/presentation/state/settings_providers.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_colors.dart';
 

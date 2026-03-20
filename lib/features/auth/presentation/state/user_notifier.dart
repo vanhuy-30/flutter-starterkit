@@ -1,10 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/app/providers/app_providers.dart';
-import 'package:flutter_starter_kit/core/services/hive_service.dart';
-import 'package:flutter_starter_kit/features/auth/data/models/user_model.dart';
+import 'package:flutter_starter_kit/features/auth/domain/entities/user_entity.dart';
+import 'package:flutter_starter_kit/features/auth/domain/repositories/user_repository.dart';
 
 class UserState {
-  final List<UserModel> users;
+  final List<UserEntity> users;
   final bool isLoading;
   final String? error;
 
@@ -15,7 +14,7 @@ class UserState {
   });
 
   UserState copyWith({
-    List<UserModel>? users,
+    List<UserEntity>? users,
     bool? isLoading,
     String? error,
   }) {
@@ -28,15 +27,15 @@ class UserState {
 }
 
 class UserNotifier extends StateNotifier<UserState> {
-  final HiveService _hiveService;
+  final UserRepository _userRepository;
 
-  UserNotifier(this._hiveService) : super(const UserState());
+  UserNotifier(this._userRepository) : super(const UserState());
 
-  Future<void> addUser(UserModel user) async {
+  Future<void> addUser(UserEntity user) async {
     state = state.copyWith(isLoading: true, error: null);
     try {
-      await _hiveService.addUser(user);
-      final updatedUsers = List<UserModel>.from(state.users)..add(user);
+      await _userRepository.addUser(user);
+      final updatedUsers = List<UserEntity>.from(state.users)..add(user);
       state = state.copyWith(
         users: updatedUsers,
         isLoading: false,
@@ -49,10 +48,10 @@ class UserNotifier extends StateNotifier<UserState> {
     }
   }
 
-  Future<UserModel?> getUser(String id) async {
+  Future<UserEntity?> getUser(String id) async {
     state = state.copyWith(isLoading: true, error: null);
     try {
-      final user = await _hiveService.getUserById(id);
+      final user = await _userRepository.getUserById(id);
       state = state.copyWith(isLoading: false);
       return user;
     } catch (e) {
@@ -67,7 +66,7 @@ class UserNotifier extends StateNotifier<UserState> {
   Future<void> deleteUser(String id) async {
     state = state.copyWith(isLoading: true, error: null);
     try {
-      await _hiveService.deleteUser(id);
+      await _userRepository.deleteUser(id);
       final updatedUsers = state.users.where((user) => user.id != id).toList();
       state = state.copyWith(
         users: updatedUsers,
@@ -84,7 +83,11 @@ class UserNotifier extends StateNotifier<UserState> {
   Future<void> loadUsers() async {
     state = state.copyWith(isLoading: true, error: null);
     try {
-      state = state.copyWith(isLoading: false);
+      final users = await _userRepository.getAllUsers();
+      state = state.copyWith(
+        users: users,
+        isLoading: false,
+      );
     } catch (e) {
       state = state.copyWith(
         error: e.toString(),
@@ -93,9 +96,3 @@ class UserNotifier extends StateNotifier<UserState> {
     }
   }
 }
-
-final userNotifierProvider =
-    StateNotifierProvider<UserNotifier, UserState>((ref) {
-  final hiveService = ref.watch(hiveServiceProvider);
-  return UserNotifier(hiveService);
-});

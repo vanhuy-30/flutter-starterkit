@@ -1,32 +1,35 @@
-import 'dart:ui';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/app/providers/app_providers.dart';
-import 'package:flutter_starter_kit/features/settings/data/repositories/session_repository_impl.dart';
-import 'package:flutter_starter_kit/features/settings/data/repositories/settings_repository_impl.dart';
 import 'package:flutter_starter_kit/features/settings/domain/models/settings_state.dart';
-import 'package:flutter_starter_kit/features/settings/domain/repositories/session_repository.dart';
-import 'package:flutter_starter_kit/features/settings/domain/repositories/settings_repository.dart';
 import 'package:flutter_starter_kit/features/settings/domain/usecases/change_language_usecase.dart';
-import 'package:flutter_starter_kit/features/settings/domain/usecases/logout_usecase.dart';
 import 'package:flutter_starter_kit/features/settings/domain/usecases/toggle_theme_usecase.dart';
-import 'package:flutter_starter_kit/features/settings/presentation/state/language_provider.dart';
+import 'package:flutter_starter_kit/features/settings/domain/usecases/logout_usecase.dart';
 
 /// Settings Notifier - manages settings feature state
 class SettingsNotifier extends StateNotifier<SettingsState> {
-  final Ref _ref;
   final LogoutUseCase _logoutUseCase;
   final ChangeLanguageUseCase _changeLanguageUseCase;
   final ToggleThemeUseCase _toggleThemeUseCase;
+  final Future<void> Function() _clearAuthState;
+  final bool Function() _getIsDarkMode;
+  final void Function(bool isDarkMode) _applyThemeMode;
+  final void Function(Locale locale) _applyLocale;
 
   SettingsNotifier({
-    required Ref ref,
     required LogoutUseCase logoutUseCase,
     required ChangeLanguageUseCase changeLanguageUseCase,
     required ToggleThemeUseCase toggleThemeUseCase,
-  })  : _ref = ref,
-        _logoutUseCase = logoutUseCase,
+    required Future<void> Function() clearAuthState,
+    required bool Function() getIsDarkMode,
+    required void Function(bool isDarkMode) applyThemeMode,
+    required void Function(Locale locale) applyLocale,
+  })  : _logoutUseCase = logoutUseCase,
         _changeLanguageUseCase = changeLanguageUseCase,
         _toggleThemeUseCase = toggleThemeUseCase,
+        _clearAuthState = clearAuthState,
+        _getIsDarkMode = getIsDarkMode,
+        _applyThemeMode = applyThemeMode,
+        _applyLocale = applyLocale,
         super(const SettingsState(isInitialized: true));
 
   /// Logout user and clear all storage
@@ -35,7 +38,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
 
     try {
       await _logoutUseCase();
-      await _ref.read(authNotifierProvider.notifier).clearAuthenticationState();
+      await _clearAuthState();
       state = state.copyWith(isLoading: false);
     } catch (e) {
       state = state.copyWith(
@@ -52,7 +55,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
 
     try {
       await _changeLanguageUseCase(locale);
-      _ref.read(languageProvider.notifier).applyLocale(locale);
+      _applyLocale(locale);
       state = state.copyWith(isLoading: false);
     } catch (e) {
       state = state.copyWith(
@@ -69,8 +72,8 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
 
     try {
       await _toggleThemeUseCase();
-      final isDarkMode = _ref.read(themeNotifierProvider).isDarkMode;
-      _ref.read(themeNotifierProvider.notifier).applyThemeMode(!isDarkMode);
+      final isDarkMode = _getIsDarkMode();
+      _applyThemeMode(!isDarkMode);
       state = state.copyWith(isLoading: false);
     } catch (e) {
       state = state.copyWith(
@@ -86,40 +89,3 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     state = state.copyWith(clearError: true);
   }
 }
-
-final settingsRepositoryProvider = Provider<SettingsRepository>((ref) {
-  final preferencesService = ref.watch(preferencesServiceProvider);
-  return SettingsRepositoryImpl(preferencesService);
-});
-
-final changeLanguageUseCaseProvider = Provider<ChangeLanguageUseCase>((ref) {
-  final settingsRepository = ref.watch(settingsRepositoryProvider);
-  return ChangeLanguageUseCase(settingsRepository);
-});
-
-final toggleThemeUseCaseProvider = Provider<ToggleThemeUseCase>((ref) {
-  final settingsRepository = ref.watch(settingsRepositoryProvider);
-  return ToggleThemeUseCase(settingsRepository);
-});
-
-final sessionRepositoryProvider = Provider<SessionRepository>((ref) {
-  final authRepository = ref.watch(authRepositoryProvider);
-  final secureStorageService = ref.watch(secureStorageServiceProvider);
-  return SessionRepositoryImpl(authRepository, secureStorageService);
-});
-
-final logoutUseCaseProvider = Provider<LogoutUseCase>((ref) {
-  final sessionRepository = ref.watch(sessionRepositoryProvider);
-  return LogoutUseCase(sessionRepository);
-});
-
-/// Provider for SettingsNotifier
-final settingsNotifierProvider =
-    StateNotifierProvider<SettingsNotifier, SettingsState>((ref) {
-  return SettingsNotifier(
-    ref: ref,
-    logoutUseCase: ref.watch(logoutUseCaseProvider),
-    changeLanguageUseCase: ref.watch(changeLanguageUseCaseProvider),
-    toggleThemeUseCase: ref.watch(toggleThemeUseCaseProvider),
-  );
-});
