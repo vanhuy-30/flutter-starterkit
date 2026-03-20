@@ -19,18 +19,27 @@ jobs:
       with:
         flutter-version: '3.29.0'
         channel: 'stable'
+
+    - name: Setup FVM
+      run: |
+        dart pub global activate fvm
+        echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+        fvm --version
+
+    - name: Install Flutter SDK via FVM
+      run: fvm install
     
     - name: Install dependencies
-      run: flutter pub get
-    
-    # - name: Verify formatting
-    #   run: dart format --output=none --set-exit-if-changed .
-    
-    # - name: Analyze project source
-    #   run: flutter analyze
-    
-    # - name: Run tests
-    #   run: flutter test --coverage
+      run: fvm flutter pub get
+
+    - name: Verify formatting
+      run: fvm dart format --output=none --set-exit-if-changed .
+
+    - name: Analyze project source
+      run: fvm flutter analyze
+
+    - name: Run tests
+      run: fvm flutter test --coverage
 
   deploy:
     needs: build
