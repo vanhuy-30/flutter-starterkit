@@ -33,6 +33,16 @@ class ErrorHandler {
     }
   }
 
+  /// Convert any error object directly into a user-friendly message.
+  static String getMessageFromError(dynamic error) {
+    if (error is Failure) {
+      return getErrorMessage(error);
+    }
+
+    final failure = handleError(error);
+    return getErrorMessage(failure);
+  }
+
   /// Convert AppException to corresponding Failure
   static Failure _convertAppExceptionToFailure(AppException exception) {
     switch (exception.runtimeType) {

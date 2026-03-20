@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_starter_kit/core/error/error_handler.dart';
 import 'package:flutter_starter_kit/core/services/secure_storage_service.dart';
 import 'package:flutter_starter_kit/features/auth/domain/entities/user_entity.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/auth_state.dart';
@@ -15,6 +16,16 @@ class AuthNotifier extends StateNotifier<AuthState> {
   AuthNotifier(this._authRepository, this._secureStorage)
       : super(const AuthState()) {
     _initializeAuth();
+  }
+
+  String _mapErrorMessage(dynamic error) {
+    final rawMessage = ErrorHandler.getMessageFromError(error);
+    if (rawMessage.startsWith('Unknown error: AuthException:')) {
+      return rawMessage
+          .replaceFirst('Unknown error: AuthException:', '')
+          .trim();
+    }
+    return rawMessage;
   }
 
   /// Initialize authentication state on app start
@@ -47,7 +58,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       }
     } catch (e) {
       state = state.copyWith(
-        error: 'Failed to initialize authentication: ${e.toString()}',
+        error: _mapErrorMessage(e),
         isLoading: false,
         isInitialized: true,
       );
@@ -75,7 +86,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }
@@ -102,7 +113,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }
@@ -128,7 +139,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }
@@ -154,7 +165,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }
@@ -180,7 +191,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }
@@ -206,7 +217,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }
@@ -228,7 +239,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: 'Failed to logout: ${e.toString()}',
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }
@@ -275,7 +286,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: 'Failed to clear authentication state: ${e.toString()}',
+        error: _mapErrorMessage(e),
       );
     }
   }

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_starter_kit/core/error/error_handler.dart';
 import 'package:flutter_starter_kit/features/auth/domain/entities/user_entity.dart';
 import 'package:flutter_starter_kit/features/auth/domain/repositories/user_repository.dart';
 
@@ -31,6 +32,10 @@ class UserNotifier extends StateNotifier<UserState> {
 
   UserNotifier(this._userRepository) : super(const UserState());
 
+  String _mapErrorMessage(dynamic error) {
+    return ErrorHandler.getMessageFromError(error);
+  }
+
   Future<void> addUser(UserEntity user) async {
     state = state.copyWith(isLoading: true, error: null);
     try {
@@ -42,7 +47,7 @@ class UserNotifier extends StateNotifier<UserState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }
@@ -56,7 +61,7 @@ class UserNotifier extends StateNotifier<UserState> {
       return user;
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
       return null;
@@ -74,7 +79,7 @@ class UserNotifier extends StateNotifier<UserState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }
@@ -90,7 +95,7 @@ class UserNotifier extends StateNotifier<UserState> {
       );
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
         isLoading: false,
       );
     }

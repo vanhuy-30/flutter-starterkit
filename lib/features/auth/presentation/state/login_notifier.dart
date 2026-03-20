@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_starter_kit/core/error/error_handler.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/login_request.dart';
 import 'package:flutter_starter_kit/features/auth/presentation/state/auth_providers.dart';
 
@@ -44,6 +45,16 @@ class LoginNotifier extends StateNotifier<LoginState> {
           passwordController: TextEditingController(),
         ));
 
+  String _mapErrorMessage(dynamic error) {
+    final rawMessage = ErrorHandler.getMessageFromError(error);
+    if (rawMessage.startsWith('Unknown error: AuthException:')) {
+      return rawMessage
+          .replaceFirst('Unknown error: AuthException:', '')
+          .trim();
+    }
+    return rawMessage;
+  }
+
   void togglePasswordVisibility() {
     state = state.copyWith(
       obscurePassword: !state.obscurePassword,
@@ -66,7 +77,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
       await _ref.read(authNotifierProvider.notifier).login(request);
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
       );
     } finally {
       state = state.copyWith(isLoading: false);
@@ -79,7 +90,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
       await _ref.read(authNotifierProvider.notifier).loginWithGoogle();
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
       );
     } finally {
       state = state.copyWith(isLoading: false);
@@ -92,7 +103,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
       await _ref.read(authNotifierProvider.notifier).loginWithFacebook();
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
       );
     } finally {
       state = state.copyWith(isLoading: false);
@@ -105,7 +116,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
       await _ref.read(authNotifierProvider.notifier).loginWithApple();
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
       );
     } finally {
       state = state.copyWith(isLoading: false);
@@ -118,7 +129,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
       await _ref.read(authNotifierProvider.notifier).loginWithPhone();
     } catch (e) {
       state = state.copyWith(
-        error: e.toString(),
+        error: _mapErrorMessage(e),
       );
     } finally {
       state = state.copyWith(isLoading: false);

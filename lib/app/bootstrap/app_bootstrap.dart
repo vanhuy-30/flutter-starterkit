@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_starter_kit/app/providers/app_providers.dart';
 import 'package:flutter_starter_kit/core/configs/app_config.dart';
 import 'package:flutter_starter_kit/core/configs/constants.dart';
 import 'package:flutter_starter_kit/core/services/biometric_service.dart';
+import 'package:flutter_starter_kit/core/services/code_quality_service.dart';
 import 'package:flutter_starter_kit/core/services/hive_service.dart';
 import 'package:flutter_starter_kit/core/services/preferences_service.dart';
 
@@ -15,27 +18,52 @@ class AppBootstrap {
   static Future<void> run({
     required String envFile,
   }) async {
-    try {
-      // Load environment variables
-      await dotenv.load(fileName: envFile);
-      configureAppConfig();
+    final logger = CodeQualityService();
 
-      // Initialize app
-      await AppInitializer.initialize();
+    FlutterError.onError = (FlutterErrorDetails details) {
+      logger.logError(
+        'Unhandled Flutter framework error',
+        details.exception,
+        details.stack,
+      );
+      FlutterError.presentError(details);
+    };
 
-      // Initialize localization
-      await EasyLocalization.ensureInitialized();
+    PlatformDispatcher.instance.onError =
+        (Object error, StackTrace stackTrace) {
+      logger.logError(
+        'Unhandled platform dispatcher error',
+        error,
+        stackTrace,
+      );
+      return true;
+    };
 
-      // Initialize services
-      await _initializeServices();
+    await runZonedGuarded(() async {
+      try {
+        // Load environment variables
+        await dotenv.load(fileName: envFile);
+        configureAppConfig();
 
-      // Run the app
-      runApp(_buildApp());
-    } catch (e) {
-      // Handle initialization errors
-      debugPrint('App initialization failed: $e');
-      runApp(_buildErrorApp(e.toString()));
-    }
+        // Initialize app
+        await AppInitializer.initialize();
+
+        // Initialize localization
+        await EasyLocalization.ensureInitialized();
+
+        // Initialize services
+        await _initializeServices();
+
+        // Run the app
+        runApp(_buildApp());
+      } catch (e, stackTrace) {
+        // Handle initialization errors
+        logger.logError('App initialization failed', e, stackTrace);
+        runApp(_buildErrorApp('Application failed to start.'));
+      }
+    }, (Object error, StackTrace stackTrace) {
+      logger.logError('Uncaught zone error', error, stackTrace);
+    });
   }
 
   static Future<void> _initializeServices() async {

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_starter_kit/core/error/error_handler.dart';
 import 'package:flutter_starter_kit/features/settings/domain/models/settings_state.dart';
 import 'package:flutter_starter_kit/features/settings/domain/usecases/change_language_usecase.dart';
 import 'package:flutter_starter_kit/features/settings/domain/usecases/toggle_theme_usecase.dart';
@@ -32,6 +33,10 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
         _applyLocale = applyLocale,
         super(const SettingsState(isInitialized: true));
 
+  String _mapErrorMessage(dynamic error) {
+    return ErrorHandler.getMessageFromError(error);
+  }
+
   /// Logout user and clear all storage
   Future<void> logout() async {
     state = state.copyWith(isLoading: true, clearError: true);
@@ -43,7 +48,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     } catch (e) {
       state = state.copyWith(
         isLoading: false,
-        error: 'Failed to logout: ${e.toString()}',
+        error: _mapErrorMessage(e),
       );
       rethrow;
     }
@@ -60,7 +65,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     } catch (e) {
       state = state.copyWith(
         isLoading: false,
-        error: 'Failed to change language: ${e.toString()}',
+        error: _mapErrorMessage(e),
       );
       rethrow;
     }
@@ -78,7 +83,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     } catch (e) {
       state = state.copyWith(
         isLoading: false,
-        error: 'Failed to toggle theme: ${e.toString()}',
+        error: _mapErrorMessage(e),
       );
       rethrow;
     }
