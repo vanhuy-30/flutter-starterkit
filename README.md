@@ -280,7 +280,18 @@ Additional helpers live in `lib/core/services/` and expose straightforward APIs 
 | Auto format + analyze on commit | `.git/hooks/pre-commit` | Formats staged Dart files, runs `flutter analyze`, warns on TODO/print. |
 | Manual lint | `flutter analyze` | Uses `analysis_options.yaml`. |
 | Tests + coverage | `./test_coverage.sh` | Runs unit/widget/integration tests, opens coverage HTML. |
-| Code generation | `dart run build_runner build` | Add `--delete-conflicting-outputs` for clean rebuilds. |
+| Code generation | `make gen-code` | Wrapper for `fvm dart run build_runner build --delete-conflicting-outputs` (fallback `dart` if no FVM). |
+| Code generation (watch) | `make gen-code-watch` | Wrapper for `fvm dart run build_runner watch --delete-conflicting-outputs` (fallback `dart` if no FVM). |
+| Build Android APK | `make build-apk FLAVOR=dev` | Supports `FLAVOR=dev|stg|prod`. |
+| Build iOS IPA | `make build-ipa FLAVOR=dev` | Supports `FLAVOR=dev|stg|prod` on macOS. |
+
+Quick examples:
+```bash
+make gen-code
+make gen-code-watch
+make build-apk FLAVOR=stg
+make build-ipa FLAVOR=prod
+```
 
 ---
 
