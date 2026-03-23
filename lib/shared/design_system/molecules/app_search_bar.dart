@@ -29,7 +29,7 @@ class AppSearchBar extends StatefulWidget {
 
   const AppSearchBar({
     super.key,
-    this.hintText = 'Tìm kiếm...',
+    this.hintText = 'Search...',
     required this.controller,
     this.onSearch,
     this.onClear,
@@ -425,7 +425,7 @@ class AppBarSearchBar extends StatelessWidget {
 
   const AppBarSearchBar({
     super.key,
-    this.hintText = 'Tìm kiếm...',
+    this.hintText = 'Search...',
     required this.controller,
     this.onChanged,
     this.onSubmitted,
@@ -464,7 +464,7 @@ class AppSearchBarWithSuggestions extends StatefulWidget {
 
   const AppSearchBarWithSuggestions({
     super.key,
-    this.hintText = 'Tìm kiếm...',
+    this.hintText = 'Search...',
     required this.controller,
     this.suggestions = const [],
     this.onChanged,

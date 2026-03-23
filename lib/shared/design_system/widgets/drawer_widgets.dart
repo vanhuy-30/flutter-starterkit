@@ -156,7 +156,7 @@ class AppDrawerLogoutButton extends StatelessWidget {
         size: 24,
       ),
       title: const AppText(
-        'Đăng xuất',
+        'Logout',
         color: AppColors.errorColor,
         fontWeight: FontWeight.w500,
       ),

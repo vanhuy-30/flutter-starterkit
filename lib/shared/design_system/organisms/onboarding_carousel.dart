@@ -25,9 +25,9 @@ class OnboardingCarousel extends StatefulWidget {
     required this.pages,
     this.onComplete,
     this.onSkip,
-    this.skipText = 'Bỏ qua',
-    this.nextText = 'Tiếp theo',
-    this.getStartedText = 'Bắt đầu',
+    this.skipText = 'Skip',
+    this.nextText = 'Next',
+    this.getStartedText = 'Get started',
     this.showSkipButton = true,
     this.showNextButton = true,
     this.showGetStartedButton = true,
@@ -258,23 +258,23 @@ class AppOnboardingCarousel extends StatelessWidget {
     return OnboardingCarousel(
       pages: const [
         OnboardingPage(
-          title: 'Chào mừng đến với App',
+          title: 'Welcome to the App',
           description:
-              'Khám phá những tính năng tuyệt vời và trải nghiệm dịch vụ tốt nhất.',
+              'Discover amazing features and enjoy the best service experience.',
           icon: AppIcons.home,
           iconColor: AppColors.primaryColor,
         ),
         OnboardingPage(
-          title: 'Dễ dàng sử dụng',
+          title: 'Easy to use',
           description:
-              'Giao diện thân thiện và trực quan giúp bạn sử dụng một cách dễ dàng.',
+              'A friendly and intuitive interface helps you use the app with ease.',
           icon: AppIcons.settings,
           iconColor: AppColors.successColor,
         ),
         OnboardingPage(
-          title: 'Bảo mật cao',
+          title: 'Security cao',
           description:
-              'Thông tin của bạn được bảo vệ an toàn với công nghệ mã hóa tiên tiến.',
+              'Your information is protected with advanced encryption technology.',
           icon: AppIcons.security,
           iconColor: AppColors.warningColor,
         ),

@@ -34,7 +34,7 @@ class AppListSection extends StatelessWidget {
     this.margin,
     this.showDivider = true,
     this.onSeeAllPressed,
-    this.seeAllText = 'Xem tất cả',
+    this.seeAllText = 'See all',
     this.emptyWidget,
     this.loadingWidget,
     this.isLoading = false,
@@ -316,7 +316,7 @@ class AppListSection extends StatelessWidget {
               ),
               SizedBox(height: 16),
               AppText(
-                'Không có dữ liệu',
+                'No data available',
                 color: AppColors.textSecondaryColor,
                 textAlign: TextAlign.center,
               ),

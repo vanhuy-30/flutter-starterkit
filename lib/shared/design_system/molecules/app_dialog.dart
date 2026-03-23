@@ -12,8 +12,8 @@ class AppDialog {
     required BuildContext context,
     required String title,
     required String message,
-    String confirmText = 'Xác nhận',
-    String cancelText = 'Hủy',
+    String confirmText = 'Confirm',
+    String cancelText = 'Cancel',
     Color? confirmColor,
     Color? cancelColor,
     VoidCallback? onConfirm,
@@ -215,7 +215,7 @@ class AppDialog {
   /// Show loading dialog
   static Future<void> showLoading({
     required BuildContext context,
-    String message = 'Đang tải...',
+    String message = 'Loading...',
   }) {
     return showDialog<void>(
       context: context,

@@ -1,50 +1,50 @@
 class Validators {
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Vui lòng nhập email';
+      return 'Please enter email';
     }
     if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-      return 'Email không hợp lệ';
+      return 'Invalid email';
     }
     return null;
   }
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Vui lòng nhập mật khẩu';
+      return 'Please enter password';
     }
     if (value.length < 6) {
-      return 'Mật khẩu phải có ít nhất 6 ký tự';
+      return 'Password must be at least 6 characters';
     }
     return null;
   }
 
   static String? validatePhone(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Vui lòng nhập số điện thoại';
+      return 'Please enter phone number';
     }
     if (!RegExp(r'^[0-9+\-\s()]+$').hasMatch(value)) {
-      return 'Số điện thoại không hợp lệ';
+      return 'Invalid phone number';
     }
     return null;
   }
 
   static String? validateName(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Vui lòng nhập tên';
+      return 'Please enter name';
     }
     if (value.length < 2) {
-      return 'Tên phải có ít nhất 2 ký tự';
+      return 'Name must be at least 2 characters';
     }
     return null;
   }
 
   static String? validateConfirmPassword(String? value, {String? password}) {
     if (value == null || value.isEmpty) {
-      return 'Vui lòng xác nhận mật khẩu';
+      return 'Please confirm password';
     }
     if (password != null && value != password) {
-      return 'Mật khẩu xác nhận không khớp';
+      return 'Password confirmation does not match';
     }
     return null;
   }

@@ -15,22 +15,32 @@ class ErrorHandler {
       return const NoInternetFailure();
     } else if (error is FormatException) {
       return ParsingFailure(
-        message: 'Lỗi định dạng dữ liệu: ${error.message}',
+        message: 'Data format error: ${error.message}',
         code: 'FORMAT_ERROR',
         jsonString: error.source?.toString(),
       );
     } else if (error is TypeError) {
       return ParsingFailure(
-        message: 'Lỗi kiểu dữ liệu: ${error.toString()}',
+        message: 'Type error: ${error.toString()}',
         code: 'TYPE_ERROR',
       );
     } else {
       return UnknownFailure(
-        message: 'Lỗi không xác định: ${error.toString()}',
+        message: 'Unknown error: ${error.toString()}',
         code: 'UNKNOWN_ERROR',
         data: error,
       );
     }
+  }
+
+  /// Convert any error object directly into a user-friendly message.
+  static String getMessageFromError(dynamic error) {
+    if (error is Failure) {
+      return getErrorMessage(error);
+    }
+
+    final failure = handleError(error);
+    return getErrorMessage(failure);
   }
 
   /// Convert AppException to corresponding Failure
@@ -134,7 +144,7 @@ class ErrorHandler {
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
         return TimeoutFailure(
-          message: 'Yêu cầu hết thời gian chờ',
+          message: 'Request timed out',
           code: 'TIMEOUT',
           timeout: dioException.requestOptions.sendTimeout,
           endpoint: dioException.requestOptions.path,
@@ -145,13 +155,13 @@ class ErrorHandler {
         return _handleBadResponse(dioException);
       case DioExceptionType.cancel:
         return const NetworkFailure(
-          message: 'Yêu cầu đã bị hủy',
+          message: 'Request was canceled',
           code: 'CANCELLED',
         );
       case DioExceptionType.unknown:
       default:
         return NetworkFailure(
-          message: 'Lỗi mạng: ${dioException.message}',
+          message: 'Network error: ${dioException.message}',
           code: 'NETWORK_ERROR',
           endpoint: dioException.requestOptions.path,
         );
@@ -166,7 +176,7 @@ class ErrorHandler {
     final endpoint = dioException.requestOptions.path;
 
     // Extract error message from response
-    String message = 'Lỗi server';
+    String message = 'Server error';
     String? code;
     Map<String, dynamic>? errorData;
 
@@ -221,7 +231,7 @@ class ErrorHandler {
         );
       case 500:
         return ServerFailure(
-          message: 'Lỗi server nội bộ',
+          message: 'Internal server error',
           code: 'INTERNAL_SERVER_ERROR',
           statusCode: statusCode,
           endpoint: endpoint,
@@ -231,7 +241,7 @@ class ErrorHandler {
       case 503:
       case 504:
         return ServerFailure(
-          message: 'Server tạm thời không khả dụng',
+          message: 'Server temporarily unavailable',
           code: 'SERVICE_UNAVAILABLE',
           statusCode: statusCode,
           endpoint: endpoint,
@@ -260,21 +270,21 @@ class ErrorHandler {
   static String getErrorMessage(Failure failure) {
     switch (failure.runtimeType) {
       case NoInternetFailure _:
-        return 'Vui lòng kiểm tra kết nối internet của bạn';
+        return 'Please check your internet connection';
       case TimeoutFailure _:
-        return 'Yêu cầu hết thời gian chờ. Vui lòng thử lại';
+        return 'Request timed out. Please try again';
       case ServerFailure _:
-        return 'Có lỗi xảy ra từ server. Vui lòng thử lại sau';
+        return 'A server error occurred. Please try again later';
       case ValidationFailure _:
         return failure.message;
       case AuthenticationFailure _:
-        return 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại';
+        return 'Session has expired. Please sign in again';
       case AuthorizationFailure _:
-        return 'Bạn không có quyền thực hiện hành động này';
+        return 'You do not have permission to perform this action';
       case NotFoundFailure _:
-        return 'Không tìm thấy dữ liệu yêu cầu';
+        return 'Requested data not found';
       case RateLimitFailure _:
-        return 'Bạn đã gửi quá nhiều yêu cầu. Vui lòng chờ một chút';
+        return 'Too many requests sent. Please wait a moment';
       default:
         return failure.message;
     }

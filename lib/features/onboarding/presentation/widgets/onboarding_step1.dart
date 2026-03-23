@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_colors.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/text_styles.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/buttons/app_button.dart';
-import 'package:flutter_starter_kit/features/onboarding/presentation/providers/onboarding_providers.dart';
+import 'package:flutter_starter_kit/features/onboarding/presentation/state/onboarding_providers.dart';
 import 'package:flutter_starter_kit/features/onboarding/presentation/widgets/onboarding_progress_widgets.dart';
 import 'package:flutter_starter_kit/features/onboarding/presentation/widgets/interest_selection_card.dart';
 

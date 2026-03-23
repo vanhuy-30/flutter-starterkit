@@ -1,10 +1,10 @@
-import 'package:flutter_starter_kit/features/auth/data/models/user_model.dart';
+import 'package:flutter_starter_kit/features/auth/domain/entities/user_entity.dart';
 
 /// Global authentication state
 /// Manages user authentication status, user data, and tokens
 class AuthState {
   final bool isAuthenticated;
-  final UserModel? user;
+  final UserEntity? user;
   final String? accessToken;
   final String? refreshToken;
   final bool isLoading;
@@ -24,7 +24,7 @@ class AuthState {
   /// Create a copy of this state with updated values
   AuthState copyWith({
     bool? isAuthenticated,
-    UserModel? user,
+    UserEntity? user,
     String? accessToken,
     String? refreshToken,
     bool? isLoading,

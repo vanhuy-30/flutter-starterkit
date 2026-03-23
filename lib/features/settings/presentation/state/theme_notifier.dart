@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/core/services/preferences_service.dart';
 import 'package:flutter_starter_kit/app/providers/app_providers.dart';
+import 'package:flutter_starter_kit/core/services/preferences_service.dart';
 
 class ThemeState {
   final bool isDarkMode;
@@ -44,9 +44,16 @@ class ThemeNotifier extends StateNotifier<ThemeState> {
       isLoading: false,
     );
   }
+
+  /// Update theme state from settings flow (already persisted by use case).
+  void applyThemeMode(bool isDarkMode) {
+    state = state.copyWith(
+      isDarkMode: isDarkMode,
+      isLoading: false,
+    );
+  }
 }
 
-// Provider cho ThemeNotifier
 final themeNotifierProvider =
     StateNotifierProvider<ThemeNotifier, ThemeState>((ref) {
   final preferencesService = ref.watch(preferencesServiceProvider);

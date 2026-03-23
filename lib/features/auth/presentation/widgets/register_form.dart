@@ -52,7 +52,7 @@ class _RegisterFormState extends State<RegisterForm> {
     if (!_agreeToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Vui lòng đồng ý với Điều khoản và Chính sách bảo mật'),
+          content: Text('Please agree to the Terms and Privacy Policy'),
           backgroundColor: AppColors.errorColor,
         ),
       );
