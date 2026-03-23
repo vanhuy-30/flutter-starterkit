@@ -4,7 +4,7 @@ set -euo pipefail
 
 if command -v fvm >/dev/null 2>&1; then
   FLUTTER_CMD="fvm flutter"
-  DART_CMD="fvm dart"
+  DART_CMD="dart"
 else
   FLUTTER_CMD="flutter"
   DART_CMD="dart"
