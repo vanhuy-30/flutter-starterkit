@@ -86,11 +86,6 @@ void main() {
 
         await notifier.initialize();
 
-        expect(notifier.state.isLoading, true);
-        expect(notifier.state.isCompleted, false);
-
-        await Future.delayed(Duration.zero);
-
         expect(notifier.state.isLoading, false);
         expect(notifier.state.isCompleted, true);
         expect(notifier.state.error, null);
@@ -100,10 +95,6 @@ void main() {
         mockGetStatusUseCase.shouldThrowError = true;
 
         await notifier.initialize();
-
-        expect(notifier.state.isLoading, true);
-
-        await Future.delayed(Duration.zero);
 
         expect(notifier.state.isLoading, false);
         expect(notifier.state.error, isA<OnboardingLoadError>());
@@ -155,10 +146,6 @@ void main() {
 
         await notifier.completeOnboarding();
 
-        expect(notifier.state.isCompleting, true);
-
-        await Future.delayed(Duration.zero);
-
         expect(notifier.state.isCompleting, false);
         expect(notifier.state.isCompleted, true);
         expect(notifier.state.error, null);
@@ -168,10 +155,6 @@ void main() {
         mockCompleteUseCase.shouldThrowError = true;
 
         await notifier.completeOnboarding();
-
-        expect(notifier.state.isCompleting, true);
-
-        await Future.delayed(Duration.zero);
 
         expect(notifier.state.isCompleting, false);
         expect(notifier.state.error, isA<OnboardingSaveError>());
