@@ -80,13 +80,13 @@ class Formatters {
     final difference = now.difference(date);
 
     if (difference.inDays > 0) {
-      return '${difference.inDays} ngày trước';
+      return '${difference.inDays} days ago';
     } else if (difference.inHours > 0) {
-      return '${difference.inHours} giờ trước';
+      return '${difference.inHours} hours ago';
     } else if (difference.inMinutes > 0) {
-      return '${difference.inMinutes} phút trước';
+      return '${difference.inMinutes} minutes ago';
     } else {
-      return 'Vừa xong';
+      return 'Just now';
     }
   }
 

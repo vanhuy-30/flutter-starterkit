@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/features/settings/presentation/providers/language_provider.dart';
+import 'package:flutter_starter_kit/app/providers/app_providers.dart';
+import 'package:flutter_starter_kit/features/settings/presentation/state/language_provider.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_colors.dart';
 
@@ -12,6 +13,7 @@ class LanguageDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final languageState = ref.watch(languageProvider);
+    final settingsState = ref.watch(settingsNotifierProvider);
     final availableLanguages = ref.read(availableLanguagesProvider);
 
     return AlertDialog(
@@ -34,16 +36,13 @@ class LanguageDialog extends ConsumerWidget {
                 ? const Icon(Icons.check, color: AppColors.primaryColor)
                 : null,
             onTap: () async {
-              if (!isSelected && !languageState.isLoading) {
+              if (!isSelected && !settingsState.isLoading) {
                 try {
                   await ref
-                      .read(languageProvider.notifier)
+                      .read(settingsNotifierProvider.notifier)
                       .changeLanguage(language.locale);
                   if (context.mounted) {
-                    await context.setLocale(language.locale);
-                    if (context.mounted) {
-                      Navigator.of(context).pop();
-                    }
+                    Navigator.of(context).pop();
                   }
                 } catch (e) {
                   if (context.mounted) {

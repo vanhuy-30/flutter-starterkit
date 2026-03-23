@@ -157,7 +157,7 @@ class NotFoundException extends AppException {
 /// Exception thrown when there's no internet connection
 class NoInternetException extends AppException {
   const NoInternetException({
-    super.message = 'Không có kết nối internet',
+    super.message = 'No internet connection',
     super.code,
     super.data,
   });

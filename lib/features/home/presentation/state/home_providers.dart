@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/app/state/base_notifiers.dart';
 
-/// Ví dụ sử dụng AsyncNotifier cho Home feature
+/// Example using AsyncNotifier for Home feature
 class HomeData {
   final String title;
   final String description;
@@ -17,18 +17,18 @@ class HomeData {
 class HomeNotifier extends BaseAsyncNotifier<HomeData> {
   @override
   Future<void> onInitialize() async {
-    // Logic khởi tạo nếu cần
+    // Logic initialize if needed
     await Future.delayed(const Duration(milliseconds: 500));
   }
 
   @override
   Future<HomeData> getData() async {
-    // Giả lập API call
+    // Mock API call
     await Future.delayed(const Duration(seconds: 1));
 
     return const HomeData(
-      title: 'Chào mừng đến với Flutter Starter Kit',
-      description: 'Đây là một dự án Flutter được tối ưu hóa với Riverpod',
+      title: 'Welcome to Flutter Starter Kit',
+      description: 'This is a Flutter project optimized with Riverpod',
       items: [
         'Clean Architecture',
         'Riverpod State Management',
@@ -41,11 +41,11 @@ class HomeNotifier extends BaseAsyncNotifier<HomeData> {
 
   @override
   Future<void> onRefresh() async {
-    // Logic refresh nếu cần
+    // Logic refresh if needed
     await Future.delayed(const Duration(milliseconds: 300));
   }
 
-  /// Thêm item mới
+  /// Add new item
   Future<void> addItem(String item) async {
     final currentData = state.value;
     if (currentData != null) {
@@ -58,7 +58,7 @@ class HomeNotifier extends BaseAsyncNotifier<HomeData> {
     }
   }
 
-  /// Xóa item
+  /// Remove item
   Future<void> removeItem(int index) async {
     final currentData = state.value;
     if (currentData != null && index < currentData.items.length) {

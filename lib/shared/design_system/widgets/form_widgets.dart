@@ -173,7 +173,7 @@ class AppFormActions extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 15),
               ),
               child: AppText(
-                cancelText ?? 'Hủy',
+                cancelText ?? 'Cancel',
                 color: AppColors.textSecondaryColor,
                 fontWeight: FontWeight.w500,
               ),

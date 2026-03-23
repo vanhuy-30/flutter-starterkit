@@ -23,10 +23,10 @@ class ErrorHandlingService {
   static const String databaseError = 'database_error';
   static const String unknownError = 'unknown_error';
 
-  // Stream để lắng nghe lỗi
+  // Stream for listening to errors
   Stream<ErrorEvent> get errorStream => _errorController.stream;
 
-  // Xử lý lỗi
+  // Handle errors
   Future<void> handleError(
     dynamic error,
     StackTrace stackTrace, {
@@ -42,31 +42,31 @@ class ErrorHandlingService {
       timestamp: DateTime.now(),
     );
 
-    // Log lỗi
+    // Log errors
     _logError(errorEvent);
 
-    // Kiểm tra rate limiting
+    // Check rate limiting
     if (_shouldThrottleError(type)) {
       _logger.w('Error throttled: $type');
       return;
     }
 
-    // Cập nhật error counts
+    // Update error counts
     _updateErrorCounts(type);
 
-    // Thêm vào stream
+    // Add to stream
     _errorController.add(errorEvent);
 
-    // Xử lý lỗi dựa trên type
+    // Handle errors based on type
     await _handleErrorByType(errorEvent);
 
-    // Hiển thị thông báo cho user nếu cần
+    // Show user notification when needed
     if (showToUser) {
       _showErrorToUser(errorEvent);
     }
   }
 
-  // Log lỗi
+  // Log errors
   void _logError(ErrorEvent event) {
     _logger.e(
       'Error: ${event.error}',
@@ -78,7 +78,7 @@ class ErrorHandlingService {
     }
   }
 
-  // Kiểm tra rate limiting
+  // Check rate limiting
   bool _shouldThrottleError(String type) {
     final now = DateTime.now();
     final lastErrorTime = _lastErrorTimes[type];
@@ -94,13 +94,13 @@ class ErrorHandlingService {
     return errorCount >= _maxErrorsPerHour;
   }
 
-  // Cập nhật error counts
+  // Update error counts
   void _updateErrorCounts(String type) {
     _errorCounts[type] = (_errorCounts[type] ?? 0) + 1;
     _lastErrorTimes[type] = DateTime.now();
   }
 
-  // Xử lý lỗi theo type
+  // Handle errors by type
   Future<void> _handleErrorByType(ErrorEvent event) async {
     switch (event.type) {
       case networkError:
@@ -123,49 +123,49 @@ class ErrorHandlingService {
     }
   }
 
-  // Xử lý lỗi mạng
+  // Handle network errors
   Future<void> _handleNetworkError(ErrorEvent event) async {
     // Implement network error handling
     debugPrint('Handling network error: ${event.error}');
   }
 
-  // Xử lý lỗi API
+  // Handle API errors
   Future<void> _handleApiError(ErrorEvent event) async {
     // Implement API error handling
     debugPrint('Handling API error: ${event.error}');
   }
 
-  // Xử lý lỗi validation
+  // Handle validation errors
   Future<void> _handleValidationError(ErrorEvent event) async {
     // Implement validation error handling
     debugPrint('Handling validation error: ${event.error}');
   }
 
-  // Xử lý lỗi authentication
+  // Handle authentication errors
   Future<void> _handleAuthError(ErrorEvent event) async {
     // Implement auth error handling
     debugPrint('Handling auth error: ${event.error}');
   }
 
-  // Xử lý lỗi database
+  // Handle database errors
   Future<void> _handleDatabaseError(ErrorEvent event) async {
     // Implement database error handling
     debugPrint('Handling database error: ${event.error}');
   }
 
-  // Xử lý lỗi không xác định
+  // Handle unknown errors
   Future<void> _handleUnknownError(ErrorEvent event) async {
     // Implement unknown error handling
     debugPrint('Handling unknown error: ${event.error}');
   }
 
-  // Hiển thị lỗi cho user
+  // Show errors to the user
   void _showErrorToUser(ErrorEvent event) {
     // Implement user notification
     debugPrint('Showing error to user: ${event.error}');
   }
 
-  // Lấy thống kê lỗi
+  // Get error statistics
   Map<String, dynamic> getErrorStats() {
     return {
       'errorCounts': Map<String, int>.from(_errorCounts),

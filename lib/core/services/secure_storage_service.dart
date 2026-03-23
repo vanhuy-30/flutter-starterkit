@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_starter_kit/features/auth/data/models/user_model.dart';
+import 'package:flutter_starter_kit/features/auth/domain/entities/user_entity.dart';
 import 'dart:convert';
 
 /// Secure storage service for sensitive data like tokens and user info
@@ -40,19 +40,19 @@ class SecureStorageService {
   }
 
   /// Save user data
-  Future<void> saveUserData(UserModel user) async {
+  Future<void> saveUserData(UserEntity user) async {
     final userJson = jsonEncode(user.toJson());
     await _storage.write(key: _userDataKey, value: userJson);
   }
 
   /// Get user data
-  Future<UserModel?> getUserData() async {
+  Future<UserEntity?> getUserData() async {
     final userJson = await _storage.read(key: _userDataKey);
     if (userJson == null) return null;
 
     try {
       final userMap = jsonDecode(userJson) as Map<String, dynamic>;
-      return UserModel.fromJson(userMap);
+      return UserEntity.fromJson(userMap);
     } catch (e) {
       return null;
     }

@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/app/providers/app_providers.dart';
-import 'package:flutter_starter_kit/features/settings/presentation/providers/settings_providers.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 import 'package:flutter_starter_kit/shared/design_system/theme/app_colors.dart';
 
@@ -13,6 +12,7 @@ class ThemeDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeState = ref.watch(themeNotifierProvider);
+    final settingsState = ref.watch(settingsNotifierProvider);
 
     return AlertDialog(
       title: AppText('select_theme'.tr()),
@@ -27,7 +27,7 @@ class ThemeDialog extends ConsumerWidget {
                 ? const Icon(Icons.check, color: AppColors.primaryColor)
                 : null,
             onTap: () async {
-              if (themeState.isDarkMode && !themeState.isLoading) {
+              if (themeState.isDarkMode && !settingsState.isLoading) {
                 try {
                   await ref
                       .read(settingsNotifierProvider.notifier)
@@ -55,7 +55,7 @@ class ThemeDialog extends ConsumerWidget {
                 ? const Icon(Icons.check, color: AppColors.primaryColor)
                 : null,
             onTap: () async {
-              if (!themeState.isDarkMode && !themeState.isLoading) {
+              if (!themeState.isDarkMode && !settingsState.isLoading) {
                 try {
                   await ref
                       .read(settingsNotifierProvider.notifier)

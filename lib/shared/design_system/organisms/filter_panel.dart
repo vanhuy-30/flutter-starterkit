@@ -25,7 +25,7 @@ class FilterPanel extends StatefulWidget {
     this.onApply,
     this.onReset,
     this.onClose,
-    this.title = 'Bộ lọc',
+    this.title = 'Filter',
     this.showResetButton = true,
     this.showApplyButton = true,
   });
@@ -250,7 +250,7 @@ class _FilterPanelState extends State<FilterPanel> {
           if (widget.showResetButton) ...[
             Expanded(
               child: AppButton(
-                text: 'Đặt lại',
+                text: 'Reset',
                 onPressed: _resetFilters,
                 color: AppColors.textSecondaryColor,
               ),
@@ -260,7 +260,7 @@ class _FilterPanelState extends State<FilterPanel> {
           if (widget.showApplyButton)
             Expanded(
               child: AppButton(
-                text: 'Áp dụng',
+                text: 'Apply',
                 onPressed: widget.onApply ?? () {},
               ),
             ),

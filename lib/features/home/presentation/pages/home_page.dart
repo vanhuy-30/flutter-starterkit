@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_kit/features/auth/presentation/providers/auth_providers.dart';
+import 'package:flutter_starter_kit/features/auth/presentation/state/auth_providers.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';
 
 class HomePage extends ConsumerWidget {

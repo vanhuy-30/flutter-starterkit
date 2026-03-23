@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/features/onboarding/domain/errors/onboarding_errors.dart';
-import 'package:flutter_starter_kit/features/onboarding/presentation/providers/onboarding_providers.dart';
+import 'package:flutter_starter_kit/features/onboarding/presentation/state/onboarding_providers.dart';
 import 'package:flutter_starter_kit/features/onboarding/presentation/pages/welcome_page.dart';
 import 'package:flutter_starter_kit/features/onboarding/presentation/widgets/onboarding_step1.dart';
 import 'package:flutter_starter_kit/features/onboarding/presentation/widgets/onboarding_step2.dart';
@@ -61,7 +61,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 content: Text(onboardingState.error!.displayMessage),
                 backgroundColor: Colors.red,
                 action: SnackBarAction(
-                  label: 'Đóng',
+                  label: 'Close',
                   textColor: Colors.white,
                   onPressed: () {
                     ref.read(onboardingNotifierProvider.notifier).clearError();

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_kit/app/routes/route_paths.dart';
 import 'package:flutter_starter_kit/core/utils/extensions.dart';
 import 'package:flutter_starter_kit/features/auth/domain/models/register_request.dart';
-import 'package:flutter_starter_kit/features/auth/presentation/providers/auth_providers.dart';
+import 'package:flutter_starter_kit/features/auth/presentation/state/auth_providers.dart';
 import 'package:flutter_starter_kit/features/auth/presentation/widgets/register_form.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_icon.dart';
 import 'package:flutter_starter_kit/shared/design_system/atoms/app_text.dart';

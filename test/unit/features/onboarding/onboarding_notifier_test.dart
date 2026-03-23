@@ -4,7 +4,7 @@ import 'package:flutter_starter_kit/features/onboarding/domain/errors/onboarding
 import 'package:flutter_starter_kit/features/onboarding/domain/usecases/complete_onboarding_usecase.dart';
 import 'package:flutter_starter_kit/features/onboarding/domain/usecases/get_onboarding_status_usecase.dart';
 import 'package:flutter_starter_kit/features/onboarding/domain/usecases/save_interests_usecase.dart';
-import 'package:flutter_starter_kit/features/onboarding/presentation/view_model/onboarding_notifier.dart';
+import 'package:flutter_starter_kit/features/onboarding/presentation/state/onboarding_notifier.dart';
 
 // Mock classes
 class MockGetOnboardingStatusUseCase implements GetOnboardingStatusUseCase {
@@ -86,11 +86,6 @@ void main() {
 
         await notifier.initialize();
 
-        expect(notifier.state.isLoading, true);
-        expect(notifier.state.isCompleted, false);
-
-        await Future.delayed(Duration.zero);
-
         expect(notifier.state.isLoading, false);
         expect(notifier.state.isCompleted, true);
         expect(notifier.state.error, null);
@@ -100,10 +95,6 @@ void main() {
         mockGetStatusUseCase.shouldThrowError = true;
 
         await notifier.initialize();
-
-        expect(notifier.state.isLoading, true);
-
-        await Future.delayed(Duration.zero);
 
         expect(notifier.state.isLoading, false);
         expect(notifier.state.error, isA<OnboardingLoadError>());
@@ -155,10 +146,6 @@ void main() {
 
         await notifier.completeOnboarding();
 
-        expect(notifier.state.isCompleting, true);
-
-        await Future.delayed(Duration.zero);
-
         expect(notifier.state.isCompleting, false);
         expect(notifier.state.isCompleted, true);
         expect(notifier.state.error, null);
@@ -168,10 +155,6 @@ void main() {
         mockCompleteUseCase.shouldThrowError = true;
 
         await notifier.completeOnboarding();
-
-        expect(notifier.state.isCompleting, true);
-
-        await Future.delayed(Duration.zero);
 
         expect(notifier.state.isCompleting, false);
         expect(notifier.state.error, isA<OnboardingSaveError>());

@@ -16,7 +16,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
       return _preferencesService.getOnboardingCompleted();
     } catch (e) {
       throw OnboardingLoadError(
-        message: 'Không thể tải trạng thái onboarding',
+        message: 'Unable to load state onboarding',
         details: e.toString(),
       );
     }
@@ -28,7 +28,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
       await _preferencesService.setOnboardingCompleted(completed);
     } catch (e) {
       throw OnboardingSaveError(
-        message: 'Không thể lưu trạng thái onboarding',
+        message: 'Unable to save state onboarding',
         details: e.toString(),
       );
     }
@@ -59,7 +59,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
       await _preferencesService.setString(_interestsKey, interestsJson);
     } catch (e) {
       throw InterestsSaveError(
-        message: 'Không thể lưu sở thích',
+        message: 'Unable to save preferences',
         details: e.toString(),
       );
     }
@@ -73,7 +73,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
       await _preferencesService.setString(_goalsKey, goalsJson);
     } catch (e) {
       throw InterestsSaveError(
-        message: 'Không thể lưu mục tiêu',
+        message: 'Unable to save goals',
         details: e.toString(),
       );
     }
@@ -90,7 +90,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
       return <String>{};
     } catch (e) {
       throw OnboardingLoadError(
-        message: 'Không thể tải sở thích đã lưu',
+        message: 'Unable to load saved preferences',
         details: e.toString(),
       );
     }
@@ -107,7 +107,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
       return <String>{};
     } catch (e) {
       throw OnboardingLoadError(
-        message: 'Không thể tải mục tiêu đã lưu',
+        message: 'Unable to load saved goals',
         details: e.toString(),
       );
     }

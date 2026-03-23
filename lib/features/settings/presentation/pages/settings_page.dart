@@ -92,7 +92,7 @@ class SettingsPage extends ConsumerWidget {
               confirmText: 'logout'.tr(),
               cancelText: 'cancel'.tr(),
               onConfirm: () async {
-                await ref.read(authNotifierProvider.notifier).logout();
+                await ref.read(settingsNotifierProvider.notifier).logout();
                 if (context.mounted) {
                   context.go(Routes.login);
                 }

@@ -1,8 +1,8 @@
-import 'package:flutter_starter_kit/features/auth/data/models/user_model.dart';
+import 'package:flutter_starter_kit/features/auth/domain/entities/user_entity.dart';
 
 /// Response model for authentication operations
 class AuthResponse {
-  final UserModel user;
+  final UserEntity user;
   final String accessToken;
   final String refreshToken;
   final int expiresIn; // Token expiration time in seconds
@@ -17,7 +17,7 @@ class AuthResponse {
   /// Create from JSON response
   factory AuthResponse.fromJson(Map<String, dynamic> json) {
     return AuthResponse(
-      user: UserModel.fromJson(json['user']),
+      user: UserEntity.fromJson(json['user'] as Map<String, dynamic>),
       accessToken: json['access_token'],
       refreshToken: json['refresh_token'],
       expiresIn: json['expires_in'] ?? 3600, // Default 1 hour

@@ -60,7 +60,7 @@ class LanguageNotifier extends StateNotifier<LanguageState> {
     ),
     LanguageModel(
       locale: Locale('vi'),
-      name: 'Tiếng Việt',
+      name: 'Vietnamese',
       flagPath: vietnamFlag,
     ),
   ];
@@ -93,6 +93,11 @@ class LanguageNotifier extends StateNotifier<LanguageState> {
       state = state.copyWith(isLoading: false);
       rethrow;
     }
+  }
+
+  /// Update locale state from settings flow (already persisted by use case).
+  void applyLocale(Locale locale) {
+    state = state.copyWith(currentLocale: locale, isLoading: false);
   }
 
   /// Initialize with device locale
