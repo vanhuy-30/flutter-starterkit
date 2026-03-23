@@ -24,8 +24,10 @@ class AuthRepositoryImpl implements AuthRepository {
           email: request.username,
           avatarUrl: '',
         ),
-        accessToken: 'mock_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken: 'mock_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken:
+            'mock_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken:
+            'mock_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -49,8 +51,10 @@ class AuthRepositoryImpl implements AuthRepository {
           email: request.email,
           avatarUrl: '',
         ),
-        accessToken: 'mock_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken: 'mock_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken:
+            'mock_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken:
+            'mock_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -73,8 +77,10 @@ class AuthRepositoryImpl implements AuthRepository {
           email: 'user@gmail.com',
           avatarUrl: '',
         ),
-        accessToken: 'google_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken: 'google_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken:
+            'google_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken:
+            'google_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -97,8 +103,10 @@ class AuthRepositoryImpl implements AuthRepository {
           email: 'user@facebook.com',
           avatarUrl: '',
         ),
-        accessToken: 'facebook_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken: 'facebook_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken:
+            'facebook_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken:
+            'facebook_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -121,8 +129,10 @@ class AuthRepositoryImpl implements AuthRepository {
           email: 'user@icloud.com',
           avatarUrl: '',
         ),
-        accessToken: 'apple_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken: 'apple_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken:
+            'apple_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken:
+            'apple_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -145,8 +155,10 @@ class AuthRepositoryImpl implements AuthRepository {
           email: 'user@phone.com',
           avatarUrl: '',
         ),
-        accessToken: 'phone_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken: 'phone_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken:
+            'phone_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken:
+            'phone_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {
@@ -169,8 +181,10 @@ class AuthRepositoryImpl implements AuthRepository {
           email: 'user@example.com',
           avatarUrl: '',
         ),
-        accessToken: 'refreshed_access_token_${DateTime.now().millisecondsSinceEpoch}',
-        refreshToken: 'refreshed_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
+        accessToken:
+            'refreshed_access_token_${DateTime.now().millisecondsSinceEpoch}',
+        refreshToken:
+            'refreshed_refresh_token_${DateTime.now().millisecondsSinceEpoch}',
         expiresIn: 3600,
       );
     } catch (e) {

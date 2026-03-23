@@ -33,7 +33,7 @@ jobs:
       run: fvm flutter pub get
 
     - name: Verify formatting
-      run: dart format --output=none --set-exit-if-changed .
+      run: fvm dart format --output=none --set-exit-if-changed .
 
     - name: Analyze project source
       run: fvm flutter analyze
